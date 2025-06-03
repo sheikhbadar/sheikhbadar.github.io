@@ -374,23 +374,11 @@
         }
 
         /* Metrics Styles */
-     .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin: 2rem 0 0 0;
-}
-@media (max-width: 900px) {
-    .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (max-width: 500px) {
-    .metrics-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
 
         .metric-card {
             background: #ffffff;  /* White background */
@@ -1469,7 +1457,23 @@
             }
         }
 
-       
+        /* Metrics Cards Styles */
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background: #1e2330;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
         .metric-card::after {
             content: '';
             position: absolute;
@@ -1875,41 +1879,11 @@
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('https://raw.githubusercontent.com/sheikhbadar/smart-home-capsule/refs/heads/master/screenshots/dashboard.png')"></div>
-                    <div class="project-info">
-                        <h3>Context-Aware Predictive Smart Home System</h3>
-                        <p>CAPSULE (Context-Aware Predictive Smart Home Use & Logic Engine) is a modular smart home framework leveraging context-aware reasoning and predictive control for real-time IoT device automation.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Context-Aware</span>
-                            <span class="project-tag">Predictive-Modelling</span>
-                            <span class="project-tag">Behaviour Prediction</span>
-                            <span class="project-tag">IoT</span>
-                        </div>
-                <div class="project-links">
-                            <a href="https://github.com/sheikhbadar/smart-home-capsule" class="project-link github-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                           
-                        </div>
-                
-
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('https://www.mdpi.com/sensors/sensors-22-06632/article_deploy/html/images/sensors-22-06632-g009.png')"></div>
-                    <div class="project-info">
-                        <h3>Human Activity Recognition System</h3>
-                        <p>Real-time activity recognition system using wearable sensors and machine learning algorithms. Analyzes human motion patterns for smart home applications.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Machine Learning</span>
-                            <span class="project-tag">Signal Processing</span>
-                            <span class="project-tag">IoT</span>
-                            <span class="project-tag">Python</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/sheikhbadar" class="project-link github-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                           
+              <div class="project-card"> 
+                  <div class="project-image" style="background-image: url('https://raw.githubusercontent.com/sheikhbadar/smart-home-capsule/refs/heads/master/screenshots/dashboard.png')"></div> 
+                      <div class="project-info"> <h3>Context-Aware Predictive Smart Home System</h3> <p>CAPSULE (Context-Aware Predictive Smart Home Use & Logic Engine) is a modular smart home framework leveraging context-aware reasoning and predictive control for real-time IoT device automation.</p> 
+                              <div class="project-tags"> <span class="project-tag">Context-Aware</span> <span class="project-tag">Predictive-Modelling</span> 
+                                                              <span class="project-tag">Behaviour Prediction</span> <span class="project-tag">IoT</span> </div> <div class="project-links"> <a href="https://github.com/sheikhbadar/smart-home-capsule" class="project-link github-link" target="_blank"> <i class="fab fa-github"></i> GitHub </a> </div>               
                         </div>
                     </div>
                 </div>
