@@ -96,8 +96,235 @@
         }
 
         /* ==========================================================================
-           3. Loading Animation
+           3. Research Impact Section - Improved Organization
            ========================================================================== */
+        #data-visualization {
+            background: var(--secondary-bg);
+            position: relative;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .data-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--accent-primary);
+        }
+
+        .data-card-header {
+            background: var(--accent-gradient);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-bg);
+        }
+
+        .data-card-header i {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+        }
+
+        .data-card-body {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Citation Metrics Card */
+        .citation-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .citation-stat {
+            background: rgba(129, 140, 248, 0.1);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-sm);
+            text-align: center;
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            transition: all var(--transition-fast);
+        }
+
+        .citation-stat:hover {
+            transform: translateY(-5px);
+            background: rgba(129, 140, 248, 0.15);
+            box-shadow: 0 5px 15px rgba(129, 140, 248, 0.2);
+        }
+
+        .citation-stat .number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .citation-stat .label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Publication Impact Card */
+        .impact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .impact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(129, 140, 248, 0.05);
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-fast);
+        }
+
+        .impact-item:hover {
+            background: rgba(129, 140, 248, 0.1);
+            transform: translateX(5px);
+            border-color: var(--accent-primary);
+        }
+
+        .impact-item .publisher {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .impact-item .publisher i {
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+        }
+
+        .impact-item .citations {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        /* Research Focus Card */
+        .focus-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .focus-item {
+            position: relative;
+        }
+
+        .focus-item .focus-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .focus-item .percentage {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .focus-bar {
+            height: 10px;
+            background: var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .focus-progress {
+            height: 100%;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+
+        .focus-item:hover .focus-progress {
+            filter: brightness(1.2);
+        }
+
+        /* ==========================================================================
+           4. Flag Counter - Color Matched
+           ========================================================================== */
+        .flag-counter {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .flag-counter img {
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-fast);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .flag-counter:hover img {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px var(--glow-primary);
+        }
+
+        /* ==========================================================================
+           5. Footer Enhancement
+           ========================================================================== */
+        footer {
+            background: var(--primary-bg);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0.5;
+        }
+
+        /* ==========================================================================
+           6. General Section Styles (Keep existing)
+           ========================================================================== */
+        /* Loading Animation */
         .loader {
             position: fixed;
             top: 0;
@@ -145,9 +372,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* ==========================================================================
-           4. Progress Bar
-           ========================================================================== */
+        /* Progress Bar */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -160,9 +385,7 @@
             box-shadow: 0 0 10px var(--glow-primary);
         }
 
-        /* ==========================================================================
-           5. Navigation
-           ========================================================================== */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -294,9 +517,7 @@
             border-radius: 2px;
         }
 
-        /* ==========================================================================
-           6. Hero Section
-           ========================================================================== */
+        /* Hero Section */
         header {
             min-height: 100vh;
             display: flex;
@@ -390,8 +611,9 @@
             margin: 1.5rem 0;
             opacity: 0;
             animation: fadeInUp 1s var(--transition-medium) forwards 0.5s;
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: 0.02em;
+            font-style: italic;
         }
 
         .hero-subtitle {
@@ -463,31 +685,7 @@
             50% { transform: translateX(-50%) translateY(10px); }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ==========================================================================
-           7. Section Styles
-           ========================================================================== */
-        section {
-            padding: var(--section-spacing) 0;
-            position: relative;
-        }
-
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
+        /* Section Styles */
         .section-title {
             text-align: center;
             margin-bottom: 5rem;
@@ -537,674 +735,35 @@
         }
 
         /* ==========================================================================
-           8. About Section
+           7. Animations & Effects
            ========================================================================== */
-        #about {
-            background: var(--secondary-bg);
-            position: relative;
-        }
-
-        #about::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            background: radial-gradient(ellipse at center, var(--accent-primary) 0%, transparent 70%);
-            opacity: 0.05;
-            pointer-events: none;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-        }
-
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            text-align: center;
-            max-width: 850px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .about-text::before,
-        .about-text::after {
-            content: '"';
-            position: absolute;
-            font-family: var(--font-display);
-            font-size: 4rem;
-            color: var(--accent-primary);
-            opacity: 0.2;
-        }
-
-        .about-text::before {
-            top: -1rem;
-            left: -2rem;
-        }
-
-        .about-text::after {
-            bottom: -3rem;
-            right: -2rem;
-        }
-
-        .about-text em {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-style: normal;
-            font-weight: 700;
-            position: relative;
-        }
-
-        .about-text em::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-gradient);
-            opacity: 0.5;
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1.5rem;
-            margin: 4rem 0;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-sm);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all var(--transition-fast);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent-gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--transition-medium);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: var(--accent-primary);
-        }
-
-        .skill-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-            transition: transform var(--transition-fast);
-        }
-
-        .skill-card:hover .skill-icon {
-            transform: scale(1.2);
-        }
-
-        .skill-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            font-family: var(--font-primary);
-        }
-
-        /* Metrics */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .metric-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 3rem 2rem;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-medium);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .metric-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: var(--border-radius);
-            padding: 2px;
-            background: var(--accent-gradient);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
+        .fade-in {
             opacity: 0;
-            transition: opacity var(--transition-medium);
+            transform: translateY(40px);
+            transition: all var(--transition-medium);
         }
 
-        .metric-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-        }
-
-        .metric-card:hover::after {
+        .fade-in.visible {
             opacity: 1;
-        }
-
-        .metric-number {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        /* ==========================================================================
-           9. Research Section
-           ========================================================================== */
-        #research {
-            background: var(--primary-bg);
-            position: relative;
-        }
-
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-
-        .research-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 3rem;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-medium);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .research-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--accent-gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--transition-medium);
-        }
-
-        .research-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: var(--accent-primary);
-        }
-
-        .research-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .research-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transition: transform var(--transition-fast);
-        }
-
-        .research-card:hover .research-icon {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .research-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.01em;
-        }
-
-        .research-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        /* ==========================================================================
-           10. Projects Section
-           ========================================================================== */
-        #projects {
-            background: var(--secondary-bg);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: all var(--transition-medium);
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(10px);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: var(--accent-primary);
-        }
-
-        .project-image {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--accent-gradient);
-            opacity: 0;
-            transition: opacity var(--transition-medium);
-        }
-
-        .project-card:hover .project-image::after {
-            opacity: 0.85;
-        }
-
-        .project-info {
-            padding: 2.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-info h3 {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-
-        .project-info p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-            font-size: 1.05rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tag {
-            background: rgba(129, 140, 248, 0.15);
-            color: var(--accent-primary);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all var(--transition-fast);
-            border: 1px solid var(--border-color);
-        }
-
-        .project-tag:hover {
-            background: var(--accent-gradient);
-            color: var(--primary-bg);
-            transform: translateY(-2px);
-            border-color: transparent;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: auto;
-        }
-
-        .project-link {
-            flex: 1;
-            padding: 0.8rem;
-            border-radius: var(--border-radius-sm);
-            text-align: center;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all var(--transition-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .github-link {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .github-link:hover {
-            background: var(--accent-gradient);
-            color: var(--primary-bg);
-            border-color: transparent;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--glow-primary);
-        }
-
-        /* ==========================================================================
-           11. Publications Section
-           ========================================================================== */
-        #publications {
-            background: var(--primary-bg);
-        }
-
-        .publications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .publication {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-medium);
-            position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        .publication:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: var(--accent-primary);
-        }
-
-        .publication-title {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
-        }
-
-        .publication-title a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-
-        .publication-title a:hover {
-            color: var(--accent-primary);
-        }
-
-        .publication-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 1.2rem;
-            font-size: 0.9rem;
-        }
-
-        .publication-meta span {
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .publication-meta i {
-            color: var(--accent-primary);
-        }
-
-        .publication-authors {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-            line-height: 1.6;
-        }
-
-        .publication-metrics {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .metric-badge {
-            background: rgba(129, 140, 248, 0.15);
-            color: var(--accent-primary);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .publication-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-gradient);
-            color: var(--primary-bg);
-            padding: 0.7rem 1.2rem;
-            border-radius: var(--border-radius-sm);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all var(--transition-fast);
-        }
-
-        .publication-link:hover {
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-3px);
-        }
-
-        /* ==========================================================================
-           12. Contact Section
-           ========================================================================== */
-        #contact {
-            background: var(--secondary-bg);
-            position: relative;
-        }
-
-        .contact-content {
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            font-size: 1.05rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1.2rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-sm);
-            background: var(--card-bg);
-            color: var(--text-primary);
-            font-family: var(--font-primary);
-            transition: all var(--transition-fast);
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--accent-gradient);
-            color: var(--primary-bg);
-            border: none;
-            border-radius: var(--border-radius-sm);
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            font-family: var(--font-display);
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .submit-btn:active {
             transform: translateY(0);
         }
 
-        /* ==========================================================================
-           13. Footer
-           ========================================================================== */
-        footer {
-            background: var(--primary-bg);
-            padding: 4rem 0 2rem;
-            border-top: 1px solid var(--border-color);
-            position: relative;
+        .stagger-delay-1 { transition-delay: 0.1s; }
+        .stagger-delay-2 { transition-delay: 0.2s; }
+        .stagger-delay-3 { transition-delay: 0.3s; }
+        .stagger-delay-4 { transition-delay: 0.4s; }
+
+        /* Floating elements animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-gradient);
-            opacity: 0.3;
+        .floating {
+            animation: float 4s ease-in-out infinite;
         }
 
-        .footer-content {
-            text-align: center;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2.5rem 0;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: all var(--transition-fast);
-            font-size: 1.3rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .social-icon:hover {
-            background: var(--accent-gradient);
-            color: var(--primary-bg);
-            border-color: transparent;
-            transform: translateY(-5px) scale(1.15);
-            box-shadow: 0 5px 20px var(--glow-primary);
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 1.5rem;
-            font-family: var(--font-primary);
-        }
-
-        /* Flag Counter */
-        .flag-counter {
-            margin-top: 2rem;
-            filter: brightness(1.2) contrast(1.1);
-        }
-
-        /* ==========================================================================
-           14. Back to Top Button
-           ========================================================================== */
+        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -1238,36 +797,7 @@
         }
 
         /* ==========================================================================
-           15. Animations & Effects
-           ========================================================================== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all var(--transition-medium);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stagger-delay-1 { transition-delay: 0.1s; }
-        .stagger-delay-2 { transition-delay: 0.2s; }
-        .stagger-delay-3 { transition-delay: 0.3s; }
-        .stagger-delay-4 { transition-delay: 0.4s; }
-
-        /* Floating elements animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .floating {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* ==========================================================================
-           16. Responsive Design
+           8. Responsive Design
            ========================================================================== */
         @media (max-width: 768px) {
             .hamburger {
@@ -1329,11 +859,15 @@
                 opacity: 0.05;
             }
 
+            .data-grid,
             .projects-grid,
-            .publications-grid,
-            .data-grid {
+            .publications-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .citation-stats {
+                grid-template-columns: 1fr;
             }
 
             .section-title h2::after {
@@ -1343,44 +877,22 @@
             .publications-grid {
                 gap: 2rem;
             }
-
-            .about-text::before,
-            .about-text::after {
-                display: none;
-            }
         }
 
         @media (max-width: 480px) {
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .metric-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .metric-number {
-                font-size: 2.8rem;
-            }
-
-            .hero-tag {
-                font-size: 0.8rem;
-                padding: 0.5rem 1rem;
-            }
-
-            .project-links {
+            .impact-item {
                 flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
 
-            .social-icons {
-                flex-wrap: wrap;
-                gap: 1.5rem;
+            .flag-counter img {
+                max-width: 280px;
             }
         }
 
         /* ==========================================================================
-           17. Accessibility & Print
+           9. Accessibility & Print
            ========================================================================== */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -1391,7 +903,6 @@
             }
         }
 
-        /* Focus styles for keyboard navigation */
         a:focus,
         button:focus,
         input:focus,
@@ -1420,6 +931,7 @@
                 text-decoration: underline !important;
             }
 
+            .data-card,
             .metric-card,
             .skill-card,
             .project-card,
@@ -1587,7 +1099,7 @@
         </div>
     </section>
 
-    <!-- Data Visualization Section -->
+    <!-- Research Impact Section - Improved Organization -->
     <section id="data-visualization">
         <div class="container">
             <div class="section-title fade-in">
@@ -1595,71 +1107,132 @@
                 <p>Quantitative overview of academic contributions and influence</p>
             </div>
             <div class="data-grid fade-in stagger-delay-1">
+                <!-- Citation Metrics Card -->
                 <div class="data-card">
                     <div class="data-card-header">
                         <i class="fas fa-chart-line"></i>
                         Citation Metrics
                     </div>
                     <div class="data-card-body">
-                        <div class="data-stat">
-                            <span class="stat-label">Total Citations</span>
-                            <span class="stat-value">530+</span>
-                        </div>
-                        <div class="data-stat">
-                            <span class="stat-label">h-index</span>
-                            <span class="stat-value">10</span>
-                        </div>
-                        <div class="data-stat">
-                            <span class="stat-label">i10-index</span>
-                            <span class="stat-value">10</span>
-                        </div>
-                        <div class="data-stat">
-                            <span class="stat-label">Publications</span>
-                            <span class="stat-value">12</span>
+                        <div class="citation-stats">
+                            <div class="citation-stat">
+                                <div class="number">530+</div>
+                                <div class="label">Total Citations</div>
+                            </div>
+                            <div class="citation-stat">
+                                <div class="number">10</div>
+                                <div class="label">h-index</div>
+                            </div>
+                            <div class="citation-stat">
+                                <div class="number">10</div>
+                                <div class="label">i10-index</div>
+                            </div>
+                            <div class="citation-stat">
+                                <div class="number">12</div>
+                                <div class="label">Publications</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Publication Impact Card -->
                 <div class="data-card">
                     <div class="data-card-header">
                         <i class="fas fa-table"></i>
                         Publication Impact
                     </div>
                     <div class="data-card-body">
-                        <table class="data-table">
-                            <tbody>
-                                <tr><td>IEEE</td><td>231</td></tr>
-                                <tr><td>MDPI</td><td>245</td></tr>
-                                <tr><td>Springer</td><td>12</td></tr>
-                                <tr><td>CMC</td><td>6</td></tr>
-                                <tr><td>PEERJ</td><td>1</td></tr>
-                                <tr><td>Wiley</td><td>4</td></tr>
-                            </tbody>
-                        </table>
+                        <div class="impact-list">
+                            <div class="impact-item">
+                                <div class="publisher">
+                                    <i class="fas fa-book"></i>
+                                    <span>IEEE</span>
+                                </div>
+                                <div class="citations">231</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="publisher">
+                                    <i class="fas fa-book"></i>
+                                    <span>MDPI</span>
+                                </div>
+                                <div class="citations">245</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="publisher">
+                                    <i class="fas fa-book"></i>
+                                    <span>Springer</span>
+                                </div>
+                                <div class="citations">12</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="publisher">
+                                    <i class="fas fa-book"></i>
+                                    <span>CMC</span>
+                                </div>
+                                <div class="citations">6</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="publisher">
+                                    <i class="fas fa-book"></i>
+                                    <span>PEERJ</span>
+                                </div>
+                                <div class="citations">1</div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="publisher">
+                                    <i class="fas fa-book"></i>
+                                    <span>Wiley</span>
+                                </div>
+                                <div class="citations">4</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Research Focus Card -->
                 <div class="data-card">
                     <div class="data-card-header">
                         <i class="fas fa-pie-chart"></i>
                         Research Focus
                     </div>
                     <div class="data-card-body">
-                        <div class="data-stat">
-                            <span class="stat-label">Machine Learning</span>
-                            <span class="stat-value">40%</span>
-                        </div>
-                        <div class="data-stat">
-                            <span class="stat-label">Sports Analytics</span>
-                            <span class="stat-value">25%</span>
-                        </div>
-                        <div class="data-stat">
-                            <span class="stat-label">Healthcare</span>
-                            <span class="stat-value">20%</span>
-                        </div>
-                        <div class="data-stat">
-                            <span class="stat-label">IoT & Sensors</span>
-                            <span class="stat-value">15%</span>
+                        <div class="focus-chart">
+                            <div class="focus-item">
+                                <div class="focus-label">
+                                    <span>Machine Learning</span>
+                                    <span class="percentage">40%</span>
+                                </div>
+                                <div class="focus-bar">
+                                    <div class="focus-progress" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            <div class="focus-item">
+                                <div class="focus-label">
+                                    <span>Sports Analytics</span>
+                                    <span class="percentage">25%</span>
+                                </div>
+                                <div class="focus-bar">
+                                    <div class="focus-progress" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="focus-item">
+                                <div class="focus-label">
+                                    <span>Healthcare</span>
+                                    <span class="percentage">20%</span>
+                                </div>
+                                <div class="focus-bar">
+                                    <div class="focus-progress" style="width: 20%"></div>
+                                </div>
+                            </div>
+                            <div class="focus-item">
+                                <div class="focus-label">
+                                    <span>IoT & Sensors</span>
+                                    <span class="percentage">15%</span>
+                                </div>
+                                <div class="focus-bar">
+                                    <div class="focus-progress" style="width: 15%"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1891,7 +1464,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with Color-Matched Flag Counter -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1913,8 +1486,13 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
+                <!-- Color-matched flag counter -->
                 <div class="flag-counter">
-                    <a href="https://info.flagcounter.com/ZrS2"><img src="https://s01.flagcounter.com/count2/ZrS2/bg_0A0E1A/txt_818CF8/border_121825/columns_3/maxflags_20/viewers_Collaborators/labels_1/pageviews_1/flags_0/percent_0/" alt="Visitor counter" border="0"></a>
+                    <a href="https://info.flagcounter.com/ZrS2">
+                        <img src="https://s01.flagcounter.com/count2/ZrS2/bg_0A0E1A/txt_818CF8/border_121825/columns_3/maxflags_20/viewers_Collaborators/labels_1/pageviews_1/flags_0/percent_0/" 
+                             alt="Visitor counter" border="0" 
+                             style="border-radius: 12px; border: 1px solid var(--border-color);">
+                    </a>
                 </div>
             </div>
         </div>
@@ -2115,7 +1693,33 @@
         document.addEventListener('DOMContentLoaded', addStaggerDelays);
 
         // ==========================================================================
-        // 12. Add floating animation to elements
+        // 12. Research Focus Bars Animation
+        // ==========================================================================
+        const focusObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.focus-progress');
+                    progressBars.forEach(bar => {
+                        bar.style.width = bar.style.width || '0%';
+                        setTimeout(() => {
+                            bar.style.width = bar.getAttribute('data-width') || bar.style.width;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.focus-chart').forEach(chart => {
+            focusObserver.observe(chart);
+        });
+
+        // Store original widths
+        document.querySelectorAll('.focus-progress').forEach(bar => {
+            bar.setAttribute('data-width', bar.style.width);
+        });
+
+        // ==========================================================================
+        // 13. Add floating animation to elements
         // ==========================================================================
         document.querySelectorAll('.project-card, .publication, .metric-card').forEach((el, index) => {
             if (index % 3 === 0) {
