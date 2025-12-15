@@ -1332,6 +1332,43 @@
             border-color: var(--color-accent-primary);
             box-shadow: 0 0 15px var(--color-glow);
         }
+        .flag-counter-section {
+    margin: var(--space-8) auto 0;
+    max-width: 600px;
+}
+
+.flag-counter-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent-primary);
+    text-align: center;
+    margin-bottom: var(--space-4);
+}
+
+.flag-counter-container {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-4);
+    background: rgba(129, 140, 248, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-text-muted);
+    transition: all var(--transition-medium);
+}
+
+.flag-counter-container:hover {
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 20px var(--color-glow);
+}
+
+.flag-counter-enhanced {
+    transform: scale(1.2);
+    transition: transform 0.4s ease;
+}
+
+.flag-counter-enhanced:hover {
+    transform: scale(1.25);
+}
 
         /* ==========================================================================
            15. Back to Top Component
@@ -2101,13 +2138,17 @@
         <i class="fas fa-globe"></i>
         <span>Global Visitors</span>
     </div>
-    <div class="flag-counter-wrapper">
+    <div class="flag-counter-section fade-in">
+    <h3 class="flag-counter-title">
+        <i class="fas fa-flag"></i> Global Visitor Map
+    </h3>
+    <div class="flag-counter-container">
         <a href="https://info.flagcounter.com/ZrS2" target="_blank" rel="noopener noreferrer">
-            <img src="https://s01.flagcounter.com/count2/ZrS2/bg_0A0E1A/txt_818CF8/border_121825/columns_4/maxflags_25/viewers_0/labels_1/pageviews_1/flags_1/percent_0/" 
-                 alt="Visitor counter" class="flag-counter-img">
+            <img src="https://s01.flagcounter.com/count2/ZrS2/bg_0A0E1A/txt_818CF8/border_121825/columns_5/maxflags_30/viewers_0/labels_1/pageviews_1/flags_1/percent_0/" 
+                 alt="Visitor counter" class="flag-counter-enhanced">
         </a>
-        <p class="visitor-description">Tracking visitors from around the world</p>
     </div>
+</div>
 </div>
             </div>
         </div>
@@ -2432,6 +2473,7 @@
                 console.log('✅ Portfolio Initialized Successfully');
             }
         };
+        
 
         // Initialize the application when DOM is ready
         if (document.readyState === 'loading') {
