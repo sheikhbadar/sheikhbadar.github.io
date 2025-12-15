@@ -14,33 +14,39 @@
     
     <style>
         /* ==========================================================================
-           1. CSS Variables - Vibrant & Sophisticated Color Palette
+           1. CSS Variables & Design Tokens
            ========================================================================== */
         :root {
-            /* Primary Colors - Deep Space Theme */
-            --primary-bg: #0a0e1a;
-            --secondary-bg: #121825;
-            --card-bg: rgba(18, 24, 37, 0.7);
-            --glass-bg: rgba(18, 24, 37, 0.5);
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
+            /* Color System */
+            --color-primary-bg: #0a0e1a;
+            --color-secondary-bg: #121825;
+            --color-card-bg: rgba(18, 24, 37, 0.7);
+            --color-glass-bg: rgba(18, 24, 37, 0.5);
+            --color-text-primary: #f8fafc;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-accent-primary: #818cf8;
+            --color-accent-secondary: #c084fc;
+            --color-accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 30%, #38bdf8 100%);
+            --color-glow: rgba(129, 140, 248, 0.6);
             
-            /* Accent Colors - Electric Purple & Cyan */
-            --accent-primary: #818cf8;
-            --accent-secondary: #c084fc;
-            --accent-tertiary: #38bdf8;
-            --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 30%, #38bdf8 100%);
-            --glow-primary: rgba(129, 140, 248, 0.6);
-            --glow-secondary: rgba(192, 132, 252, 0.6);
-            
-            /* Font Family */
+            /* Typography */
             --font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-display: 'Poppins', sans-serif;
             
-            /* Spacing & Layout */
-            --section-spacing: clamp(5rem, 12vh, 10rem);
-            --container-width: 1200px;
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.5rem;
+            --space-6: 2rem;
+            --space-8: 3rem;
+            --space-10: 4rem;
+            --space-section: clamp(5rem, 12vh, 10rem);
+            
+            /* Layout */
+            --container-max-width: 1200px;
             --border-radius: 20px;
             --border-radius-sm: 12px;
             
@@ -48,31 +54,36 @@
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            --shadow-glow: 0 0 30px var(--glow-primary), 0 0 60px var(--glow-secondary);
+            --shadow-glow: 0 0 30px var(--color-glow);
             
             /* Transitions */
             --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Z-index Layers */
+            --z-loading: 3000;
+            --z-progress: 2000;
+            --z-nav: 1000;
+            --z-overlay: 999;
+            --z-back-to-top: 100;
         }
 
-        /* Light Mode - Frosted Glass Theme */
+        /* Light Mode */
         [data-theme="light"] {
-            --primary-bg: #f0f9ff;
-            --secondary-bg: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #64748b;
-            --border-color: rgba(148, 163, 184, 0.2);
+            --color-primary-bg: #f0f9ff;
+            --color-secondary-bg: #ffffff;
+            --color-card-bg: rgba(255, 255, 255, 0.85);
+            --color-glass-bg: rgba(255, 255, 255, 0.7);
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-muted: #64748b;
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
 
         /* ==========================================================================
-           2. Base Styles
+           2. Reset & Base Styles
            ========================================================================== */
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -80,14 +91,13 @@
 
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
             scroll-padding-top: 80px;
         }
 
         body {
             font-family: var(--font-primary);
-            background: var(--primary-bg);
-            color: var(--text-primary);
+            background: var(--color-primary-bg);
+            color: var(--color-text-primary);
             line-height: 1.7;
             overflow-x: hidden;
             transition: background-color var(--transition-medium), color var(--transition-medium);
@@ -96,243 +106,27 @@
         }
 
         /* ==========================================================================
-           3. Research Impact Section - Improved Organization
+           3. Layout Utilities
            ========================================================================== */
-        #data-visualization {
-            background: var(--secondary-bg);
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        section {
+            padding: var(--space-section) 0;
             position: relative;
-        }
-
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .data-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: all var(--transition-medium);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .data-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: var(--accent-primary);
-        }
-
-        .data-card-header {
-            background: var(--accent-gradient);
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-bg);
-        }
-
-        .data-card-header i {
-            font-size: 1.8rem;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
-        }
-
-        .data-card-body {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Citation Metrics Card */
-        .citation-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .citation-stat {
-            background: rgba(129, 140, 248, 0.1);
-            padding: 1.5rem;
-            border-radius: var(--border-radius-sm);
-            text-align: center;
-            border: 1px solid rgba(129, 140, 248, 0.2);
-            transition: all var(--transition-fast);
-        }
-
-        .citation-stat:hover {
-            transform: translateY(-5px);
-            background: rgba(129, 140, 248, 0.15);
-            box-shadow: 0 5px 15px rgba(129, 140, 248, 0.2);
-        }
-
-        .citation-stat .number {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .citation-stat .label {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        /* Publication Impact Card */
-        .impact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .impact-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: rgba(129, 140, 248, 0.05);
-            border-radius: var(--border-radius-sm);
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-fast);
-        }
-
-        .impact-item:hover {
-            background: rgba(129, 140, 248, 0.1);
-            transform: translateX(5px);
-            border-color: var(--accent-primary);
-        }
-
-        .impact-item .publisher {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 600;
-        }
-
-        .impact-item .publisher i {
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-        }
-
-        .impact-item .citations {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-        }
-
-        /* Research Focus Card */
-        .focus-chart {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .focus-item {
-            position: relative;
-        }
-
-        .focus-item .focus-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-        }
-
-        .focus-item .percentage {
-            font-family: var(--font-display);
-            font-weight: 700;
-            color: var(--accent-primary);
-        }
-
-        .focus-bar {
-            height: 10px;
-            background: var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .focus-progress {
-            height: 100%;
-            background: var(--accent-gradient);
-            border-radius: 10px;
-            transition: width 1s ease;
-            box-shadow: 0 0 10px var(--glow-primary);
-        }
-
-        .focus-item:hover .focus-progress {
-            filter: brightness(1.2);
         }
 
         /* ==========================================================================
-           4. Flag Counter - Color Matched
+           4. Loading & Progress Components
            ========================================================================== */
-        .flag-counter {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .flag-counter img {
-            border-radius: var(--border-radius-sm);
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-fast);
-            max-width: 100%;
-            height: auto;
-        }
-
-        .flag-counter:hover img {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 15px var(--glow-primary);
-        }
-
-        /* ==========================================================================
-           5. Footer Enhancement
-           ========================================================================== */
-        footer {
-            background: var(--primary-bg);
-            padding: 4rem 0 2rem;
-            border-top: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent-gradient);
-            opacity: 0.5;
-        }
-
-        /* ==========================================================================
-           6. General Section Styles (Keep existing)
-           ========================================================================== */
-        /* Loading Animation */
         .loader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-bg);
-            z-index: 3000;
+            inset: 0;
+            background: var(--color-primary-bg);
+            z-index: var(--z-loading);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -351,68 +145,66 @@
         .loader-circle {
             width: 60px;
             height: 60px;
-            border: 3px solid var(--border-color);
-            border-top-color: var(--accent-primary);
+            border: 3px solid var(--color-text-muted);
+            border-top-color: var(--color-accent-primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        .loader-text {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+            margin: 0 auto var(--space-4);
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Progress Bar */
+        .loader-text {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            background: var(--color-accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
         .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
             height: 4px;
-            background: var(--accent-gradient);
-            z-index: 2000;
+            background: var(--color-accent-gradient);
+            z-index: var(--z-progress);
             transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--glow-primary);
+            box-shadow: 0 0 10px var(--color-glow);
         }
 
-        /* Navigation */
-        nav {
+        /* ==========================================================================
+           5. Navigation Component
+           ========================================================================== */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--glass-bg);
+            background: var(--color-glass-bg);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            z-index: 1000;
-            padding: 1.2rem 0;
-            border-bottom: 1px solid var(--border-color);
+            z-index: var(--z-nav);
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--color-text-muted);
             transition: all var(--transition-medium);
         }
 
-        nav.scrolled {
-            padding: 0.8rem 0;
+        .navbar.scrolled {
+            padding: var(--space-3) 0;
             box-shadow: var(--shadow-md);
             background: rgba(10, 14, 26, 0.95);
         }
 
-        [data-theme="light"] nav.scrolled {
+        [data-theme="light"] .navbar.scrolled {
             background: rgba(240, 249, 255, 0.95);
         }
 
-        .nav-container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 2rem;
+        .navbar-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -422,65 +214,63 @@
             font-family: var(--font-display);
             font-size: 1.8rem;
             font-weight: 800;
-            background: var(--accent-gradient);
+            background: var(--color-accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: -0.02em;
         }
 
-        .navbar {
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
-            align-items: center;
+            gap: var(--space-6);
         }
 
-        .navbar a {
-            color: var(--text-secondary);
+        .nav-link {
+            color: var(--color-text-secondary);
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
-            padding: 0.6rem 1.2rem;
+            padding: var(--space-2) var(--space-4);
             border-radius: var(--border-radius-sm);
             transition: all var(--transition-fast);
             position: relative;
-            font-family: var(--font-primary);
         }
 
-        .navbar a:hover {
-            color: var(--accent-primary);
+        .nav-link:hover {
+            color: var(--color-accent-primary);
             background: rgba(129, 140, 248, 0.15);
             transform: translateY(-2px);
         }
 
-        .navbar a::after {
+        .nav-link::after {
             content: '';
             position: absolute;
             bottom: -2px;
             left: 50%;
             width: 0;
             height: 2px;
-            background: var(--accent-gradient);
+            background: var(--color-accent-gradient);
             transform: translateX(-50%);
             transition: width var(--transition-fast);
         }
 
-        .navbar a:hover::after {
+        .nav-link:hover::after {
             width: 70%;
         }
 
         .nav-actions {
             display: flex;
-            gap: 1rem;
+            gap: var(--space-3);
             align-items: center;
         }
 
         .theme-toggle {
             background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.6rem;
+            border: 1px solid var(--color-text-muted);
+            color: var(--color-text-primary);
+            padding: var(--space-3);
             border-radius: 50%;
             cursor: pointer;
             transition: all var(--transition-fast);
@@ -492,54 +282,67 @@
         }
 
         .theme-toggle:hover {
-            border-color: var(--accent-primary);
+            border-color: var(--color-accent-primary);
             transform: rotate(15deg) scale(1.1);
-            box-shadow: 0 0 15px var(--glow-primary);
+            box-shadow: 0 0 15px var(--color-glow);
         }
 
         /* Mobile Menu */
-        .hamburger {
+        .menu-toggle {
             display: none;
             flex-direction: column;
             cursor: pointer;
             background: transparent;
             border: none;
-            padding: 0.5rem;
-            z-index: 1001;
+            padding: var(--space-2);
+            z-index: var(--z-nav);
         }
 
-        .hamburger span {
+        .menu-toggle span {
             width: 26px;
             height: 3px;
-            background: var(--text-primary);
+            background: var(--color-text-primary);
             margin: 3px 0;
             transition: all var(--transition-fast);
             border-radius: 2px;
         }
 
-        /* Hero Section */
-        header {
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-medium);
+            z-index: var(--z-overlay);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ==========================================================================
+           6. Hero Section
+           ========================================================================== */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 6rem 2rem 4rem;
-            background: radial-gradient(ellipse at center, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+            padding: var(--space-10) var(--space-6) var(--space-8);
+            background: radial-gradient(ellipse at center, var(--color-secondary-bg) 0%, var(--color-primary-bg) 100%);
         }
 
         .hero-pattern {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             opacity: 0.08;
             background-image: 
-                radial-gradient(circle at 15% 85%, var(--accent-primary) 0%, transparent 50%),
-                radial-gradient(circle at 85% 15%, var(--accent-secondary) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, var(--accent-tertiary) 0%, transparent 60%);
+                radial-gradient(circle at 15% 85%, var(--color-accent-primary) 0%, transparent 50%),
+                radial-gradient(circle at 85% 15%, var(--color-accent-secondary) 0%, transparent 50%);
             animation: floatAnimation 25s infinite ease-in-out;
         }
 
@@ -549,19 +352,19 @@
             66% { transform: translate(-30px, 30px) rotate(240deg) scale(0.95); }
         }
 
-        .header-content {
+        .hero-content {
             max-width: 900px;
             text-align: center;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        .wave {
+        .hero-wave {
             display: inline-block;
             font-size: 3.5rem;
             animation: wave 3s infinite;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 10px var(--glow-primary));
+            margin-bottom: var(--space-5);
+            filter: drop-shadow(0 0 10px var(--color-glow));
         }
 
         @keyframes wave {
@@ -570,28 +373,27 @@
             40% { transform: rotate(15deg) scale(1.1); }
         }
 
-        .typing-container {
+        .hero-typing {
             height: 5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: var(--space-5);
         }
 
-        .typing-text {
+        .hero-typing-text {
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
-            background: var(--accent-gradient);
+            background: var(--color-accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            border-right: 4px solid var(--accent-primary);
+            border-right: 4px solid var(--color-accent-primary);
             padding-right: 8px;
             animation: typing 3.5s steps(25, end), blink 0.75s step-end infinite;
             white-space: nowrap;
             overflow: hidden;
-            letter-spacing: -0.02em;
         }
 
         @keyframes typing {
@@ -601,16 +403,13 @@
 
         @keyframes blink {
             0%, 100% { border-color: transparent; }
-            50% { border-color: var(--accent-primary); }
+            50% { border-color: var(--color-accent-primary); }
         }
 
         .hero-tagline {
-            font-family: var(--font-primary);
             font-size: clamp(1.1rem, 2vw, 1.3rem);
-            color: var(--text-secondary);
-            margin: 1.5rem 0;
-            opacity: 0;
-            animation: fadeInUp 1s var(--transition-medium) forwards 0.5s;
+            color: var(--color-text-secondary);
+            margin: var(--space-5) 0;
             font-weight: 500;
             letter-spacing: 0.02em;
             font-style: italic;
@@ -619,49 +418,44 @@
         .hero-subtitle {
             font-family: var(--font-display);
             font-size: clamp(1.3rem, 3vw, 1.8rem);
-            background: var(--accent-gradient);
+            background: var(--color-accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s var(--transition-medium) forwards 0.7s;
+            margin-bottom: var(--space-5);
             font-weight: 600;
         }
 
         .hero-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: var(--space-3);
             justify-content: center;
-            opacity: 0;
-            animation: fadeInUp 1s var(--transition-medium) forwards 0.9s;
         }
 
         .hero-tag {
             background: rgba(129, 140, 248, 0.15);
-            color: var(--accent-primary);
-            padding: 0.6rem 1.2rem;
+            color: var(--color-accent-primary);
+            padding: var(--space-3) var(--space-4);
             border-radius: 100px;
             font-size: 0.9rem;
             font-weight: 500;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--color-text-muted);
             transition: all var(--transition-fast);
-            font-family: var(--font-primary);
             backdrop-filter: blur(10px);
         }
 
         .hero-tag:hover {
-            background: var(--accent-gradient);
-            color: var(--primary-bg);
+            background: var(--color-accent-gradient);
+            color: var(--color-primary-bg);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--glow-primary);
+            box-shadow: 0 5px 15px var(--color-glow);
             border-color: transparent;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 2rem;
+            bottom: var(--space-6);
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
@@ -670,7 +464,7 @@
 
         .scroll-indicator i {
             font-size: 1.8rem;
-            color: var(--accent-primary);
+            color: var(--color-accent-primary);
             opacity: 0.8;
             transition: all var(--transition-fast);
         }
@@ -685,10 +479,12 @@
             50% { transform: translateX(-50%) translateY(10px); }
         }
 
-        /* Section Styles */
+        /* ==========================================================================
+           7. Section Title Component
+           ========================================================================== */
         .section-title {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: var(--space-8);
             opacity: 0;
             transform: translateY(30px);
             transition: all var(--transition-medium);
@@ -703,14 +499,13 @@
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: var(--accent-gradient);
+            margin-bottom: var(--space-4);
+            background: var(--color-accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             position: relative;
             display: inline-block;
-            letter-spacing: -0.02em;
         }
 
         .section-title h2::after {
@@ -721,64 +516,841 @@
             transform: translateX(-50%);
             width: 100px;
             height: 4px;
-            background: var(--accent-gradient);
+            background: var(--color-accent-gradient);
             border-radius: 2px;
-            box-shadow: 0 0 15px var(--glow-primary);
+            box-shadow: 0 0 15px var(--color-glow);
         }
 
         .section-title p {
-            color: var(--text-secondary);
+            color: var(--color-text-secondary);
             font-size: 1.25rem;
             max-width: 700px;
-            margin: 2rem auto 0;
+            margin: var(--space-4) auto 0;
             line-height: 1.6;
         }
 
         /* ==========================================================================
-           7. Animations & Effects
+           8. About Section
            ========================================================================== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto var(--space-8);
+            position: relative;
+        }
+
+        .about-text::before,
+        .about-text::after {
+            content: '"';
+            position: absolute;
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--color-accent-primary);
+            opacity: 0.2;
+        }
+
+        .about-text::before {
+            top: -1rem;
+            left: -2rem;
+        }
+
+        .about-text::after {
+            bottom: -3rem;
+            right: -2rem;
+        }
+
+        .about-text em {
+            background: var(--color-accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: normal;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .about-text em::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--color-accent-gradient);
+            opacity: 0.5;
+        }
+
+        /* Skill Cards */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-10);
+        }
+
+        .skill-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-text-muted);
+            border-radius: var(--border-radius-sm);
+            padding: var(--space-5) var(--space-4);
+            text-align: center;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--color-accent-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-medium);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--color-accent-primary);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-3);
+            display: block;
+            transition: transform var(--transition-fast);
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.2);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Metric Cards */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .metric-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--space-6) var(--space-5);
+            text-align: center;
+            border: 1px solid var(--color-text-muted);
             transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
-        .fade-in.visible {
+        .metric-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--border-radius);
+            padding: 2px;
+            background: var(--color-accent-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        .metric-card:hover::after {
             opacity: 1;
-            transform: translateY(0);
         }
 
-        .stagger-delay-1 { transition-delay: 0.1s; }
-        .stagger-delay-2 { transition-delay: 0.2s; }
-        .stagger-delay-3 { transition-delay: 0.3s; }
-        .stagger-delay-4 { transition-delay: 0.4s; }
-
-        /* Floating elements animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        .metric-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--color-accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: var(--space-2);
         }
 
-        .floating {
-            animation: float 4s ease-in-out infinite;
+        .metric-label {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        /* Back to Top Button */
+        /* ==========================================================================
+           9. Research Section
+           ========================================================================== */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .research-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--space-6);
+            border: 1px solid var(--color-text-muted);
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--color-accent-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-medium);
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--color-accent-primary);
+        }
+
+        .research-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .research-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-4);
+            display: block;
+            background: var(--color-accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform var(--transition-fast);
+        }
+
+        .research-card:hover .research-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .research-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: var(--space-3);
+            background: var(--color-accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .research-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* ==========================================================================
+           10. Research Impact Section - Improved Organization
+           ========================================================================== */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .impact-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-text-muted);
+            overflow: hidden;
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--color-accent-primary);
+        }
+
+        .impact-header {
+            background: var(--color-accent-gradient);
+            padding: var(--space-4) var(--space-5);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary-bg);
+        }
+
+        .impact-header i {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+        }
+
+        .impact-body {
+            padding: var(--space-5);
+            flex-grow: 1;
+        }
+
+        /* Citation Metrics */
+        .citation-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+        }
+
+        .citation-stat {
+            background: rgba(129, 140, 248, 0.1);
+            padding: var(--space-4);
+            border-radius: var(--border-radius-sm);
+            text-align: center;
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            transition: all var(--transition-fast);
+        }
+
+        .citation-stat:hover {
+            transform: translateY(-5px);
+            background: rgba(129, 140, 248, 0.15);
+            box-shadow: 0 5px 15px rgba(129, 140, 248, 0.2);
+        }
+
+        .citation-stat .number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--color-accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: var(--space-1);
+        }
+
+        .citation-stat .label {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Publication Impact */
+        .impact-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .impact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: rgba(129, 140, 248, 0.05);
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--color-text-muted);
+            transition: all var(--transition-fast);
+        }
+
+        .impact-item:hover {
+            background: rgba(129, 140, 248, 0.1);
+            transform: translateX(5px);
+            border-color: var(--color-accent-primary);
+        }
+
+        .impact-item .publisher {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-weight: 600;
+        }
+
+        .impact-item .publisher i {
+            color: var(--color-accent-primary);
+            font-size: 1.2rem;
+        }
+
+        .impact-item .citations {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-accent-primary);
+        }
+
+        /* Research Focus Chart */
+        .focus-chart {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .focus-item {
+            position: relative;
+        }
+
+        .focus-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+            font-weight: 500;
+        }
+
+        .focus-label .percentage {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--color-accent-primary);
+        }
+
+        .focus-bar {
+            height: 10px;
+            background: var(--color-text-muted);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .focus-progress {
+            height: 100%;
+            background: var(--color-accent-gradient);
+            border-radius: 10px;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px var(--color-glow);
+        }
+
+        .focus-item:hover .focus-progress {
+            filter: brightness(1.2);
+        }
+
+        /* ==========================================================================
+           11. Projects Section
+           ========================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .project-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--color-text-muted);
+            overflow: hidden;
+            transition: all var(--transition-medium);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--color-accent-primary);
+        }
+
+        .project-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--color-accent-gradient);
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+        }
+
+        .project-card:hover .project-image::after {
+            opacity: 0.85;
+        }
+
+        .project-info {
+            padding: var(--space-6);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            margin-bottom: var(--space-3);
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-5);
+            flex-grow: 1;
+            font-size: 1.05rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-5);
+        }
+
+        .project-tag {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--color-accent-primary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            border: 1px solid var(--color-text-muted);
+        }
+
+        .project-tag:hover {
+            background: var(--color-accent-gradient);
+            color: var(--color-primary-bg);
+            transform: translateY(-2px);
+            border-color: transparent;
+        }
+
+        .project-links {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: auto;
+        }
+
+        .project-link {
+            flex: 1;
+            padding: var(--space-3);
+            border-radius: var(--border-radius-sm);
+            text-align: center;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            font-size: 0.9rem;
+        }
+
+        .project-link.github {
+            background: var(--color-card-bg);
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-text-muted);
+        }
+
+        .project-link.github:hover {
+            background: var(--color-accent-gradient);
+            color: var(--color-primary-bg);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--color-glow);
+        }
+
+        /* ==========================================================================
+           12. Publications Section
+           ========================================================================== */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .publication-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--space-6);
+            border: 1px solid var(--color-text-muted);
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .publication-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            border-color: var(--color-accent-primary);
+        }
+
+        .publication-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+            line-height: 1.5;
+        }
+
+        .publication-title a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .publication-title a:hover {
+            color: var(--color-accent-primary);
+        }
+
+        .publication-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            color: var(--color-text-muted);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .meta-item i {
+            color: var(--color-accent-primary);
+        }
+
+        .publication-authors {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: var(--space-5);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .publication-metrics {
+            display: flex;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+            flex-wrap: wrap;
+        }
+
+        .metric-badge {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--color-accent-primary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            border: 1px solid var(--color-text-muted);
+        }
+
+        .publication-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--color-accent-gradient);
+            color: var(--color-primary-bg);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--border-radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+        }
+
+        .publication-link:hover {
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================================================
+           13. Contact Section
+           ========================================================================== */
+        .contact-form {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-2);
+            font-weight: 500;
+            color: var(--color-text-primary);
+            font-size: 1.05rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-4);
+            border: 1px solid var(--color-text-muted);
+            border-radius: var(--border-radius-sm);
+            background: var(--color-card-bg);
+            color: var(--color-text-primary);
+            font-family: var(--font-primary);
+            transition: all var(--transition-fast);
+            font-size: 1rem;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-accent-primary);
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: var(--space-4);
+            background: var(--color-accent-gradient);
+            color: var(--color-primary-bg);
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-family: var(--font-display);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ==========================================================================
+           14. Footer Component
+           ========================================================================== */
+        .footer {
+            background: var(--color-primary-bg);
+            padding: var(--space-8) 0 var(--space-6);
+            border-top: 1px solid var(--color-text-muted);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--color-accent-gradient);
+            opacity: 0.5;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            transition: all var(--transition-fast);
+            font-size: 1.3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            background: var(--color-accent-gradient);
+            color: var(--color-primary-bg);
+            border-color: transparent;
+            transform: translateY(-5px) scale(1.15);
+            box-shadow: 0 5px 20px var(--color-glow);
+        }
+
+        .copyright {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-top: var(--space-4);
+            font-family: var(--font-primary);
+        }
+
+        /* Flag Counter */
+        .flag-counter {
+            margin-top: var(--space-6);
+            text-align: center;
+        }
+
+        .flag-counter img {
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--color-text-muted);
+            transition: all var(--transition-fast);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .flag-counter:hover img {
+            border-color: var(--color-accent-primary);
+            box-shadow: 0 0 15px var(--color-glow);
+        }
+
+        /* ==========================================================================
+           15. Back to Top Component
+           ========================================================================== */
         .back-to-top {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: var(--space-6);
+            right: var(--space-6);
             width: 55px;
             height: 55px;
             border-radius: 50%;
-            background: var(--accent-gradient);
-            color: var(--primary-bg);
+            background: var(--color-accent-gradient);
+            color: var(--color-primary-bg);
             border: none;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transition: all var(--transition-fast);
-            z-index: 100;
+            z-index: var(--z-back-to-top);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -797,73 +1369,77 @@
         }
 
         /* ==========================================================================
-           8. Responsive Design
+           16. Animation Utilities
+           ========================================================================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all var(--transition-medium);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-delay-1 { transition-delay: 0.1s; }
+        .stagger-delay-2 { transition-delay: 0.2s; }
+        .stagger-delay-3 { transition-delay: 0.3s; }
+        .stagger-delay-4 { transition-delay: 0.4s; }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* ==========================================================================
+           17. Responsive Design
            ========================================================================== */
         @media (max-width: 768px) {
-            .hamburger {
+            .menu-toggle {
                 display: flex;
             }
 
-            .navbar {
+            .nav-menu {
                 position: fixed;
                 top: 0;
                 right: -100%;
                 width: 85%;
                 max-width: 320px;
                 height: 100vh;
-                background: var(--glass-bg);
-                backdrop-filter: blur(25px) saturate(180%);
-                -webkit-backdrop-filter: blur(25px) saturate(180%);
+                background: var(--color-glass-bg);
+                backdrop-filter: blur(25px);
                 flex-direction: column;
                 justify-content: flex-start;
                 padding-top: 7rem;
                 transition: right var(--transition-medium);
                 gap: 0;
-                border-left: 1px solid var(--border-color);
             }
 
-            .navbar.active {
+            .nav-menu.active {
                 right: 0;
             }
 
-            .navbar li {
-                width: 100%;
-            }
-
-            .navbar a {
+            .nav-menu .nav-link {
                 display: block;
-                padding: 1.2rem 2rem;
+                padding: var(--space-4);
                 border-radius: 0;
                 font-size: 1.1rem;
             }
 
-            .menu-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.6);
-                opacity: 0;
-                visibility: hidden;
-                transition: all var(--transition-medium);
-                z-index: 999;
+            .hero-typing-text {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
             }
 
-            .menu-overlay.active {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .hero-pattern {
-                opacity: 0.05;
-            }
-
-            .data-grid,
+            .impact-grid,
             .projects-grid,
             .publications-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: var(--space-6);
             }
 
             .citation-stats {
@@ -874,25 +1450,48 @@
                 width: 70px;
             }
 
-            .publications-grid {
-                gap: 2rem;
+            .about-text::before,
+            .about-text::after {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
-            .impact-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
             }
 
-            .flag-counter img {
-                max-width: 280px;
+            .metric-card {
+                padding: var(--space-5) var(--space-4);
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .hero-tag {
+                font-size: 0.8rem;
+                padding: var(--space-2) var(--space-3);
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .project-tag {
+                font-size: 0.75rem;
+                padding: var(--space-1) var(--space-2);
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                gap: var(--space-3);
             }
         }
 
         /* ==========================================================================
-           9. Accessibility & Print
+           18. Accessibility & Print
            ========================================================================== */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -903,16 +1502,34 @@
             }
         }
 
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         a:focus,
         button:focus,
         input:focus,
         textarea:focus {
-            outline: 2px solid var(--accent-primary);
+            outline: 2px solid var(--color-accent-primary);
             outline-offset: 3px;
         }
 
         @media print {
-            nav, .scroll-indicator, .back-to-top, .loader, .hamburger, .theme-toggle {
+            .navbar,
+            .scroll-indicator,
+            .back-to-top,
+            .loader,
+            .menu-toggle,
+            .theme-toggle,
+            .menu-overlay {
                 display: none !important;
             }
 
@@ -923,7 +1540,7 @@
 
             section {
                 page-break-inside: avoid;
-                padding: 2rem 0 !important;
+                padding: var(--space-6) 0 !important;
             }
 
             a {
@@ -931,11 +1548,7 @@
                 text-decoration: underline !important;
             }
 
-            .data-card,
-            .metric-card,
-            .skill-card,
-            .project-card,
-            .publication {
+            .card {
                 break-inside: avoid;
                 box-shadow: none !important;
                 border: 1px solid #ccc !important;
@@ -945,7 +1558,7 @@
 </head>
 <body>
     <!-- Loading Animation -->
-    <div class="loader">
+    <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-circle"></div>
             <div class="loader-text">Loading Portfolio</div>
@@ -953,53 +1566,57 @@
     </div>
 
     <!-- Progress Bar -->
-    <div class="progress-bar"></div>
+    <div class="progress-bar" id="progressBar"></div>
 
     <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">SB</div>
-            <ul class="navbar">
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#data-visualization">Impact</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </li>
-            </ul>
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-container">
+                <div class="logo">SB</div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a class="nav-link" href="#about">About</a></li>
+                    <li><a class="nav-link" href="#research">Research</a></li>
+                    <li><a class="nav-link" href="#data-visualization">Impact</a></li>
+                    <li><a class="nav-link" href="#projects">Projects</a></li>
+                    <li><a class="nav-link" href="#publications">Publications</a></li>
+                    <li><a class="nav-link" href="#contact">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                            <i class="fas fa-moon" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="menu-overlay" id="menuOverlay"></div>
+            </div>
         </div>
-        <div class="menu-overlay"></div>
     </nav>
 
     <!-- Hero Section -->
-    <header>
+    <header class="hero">
         <div class="hero-pattern"></div>
-        <div class="header-content">
-            <div class="wave floating">👋</div>
-            <div class="typing-container">
-                <div class="typing-text">Hi, I'm Badar</div>
-            </div>
-            <p class="hero-tagline">I turn data, models, and ideas into impactful research.</p>
-            <h2 class="hero-subtitle">Bringing Novel Ideas to Life through Published Insights</h2>
-            <div class="hero-tags">
-                <span class="hero-tag">Machine Learning</span>
-                <span class="hero-tag">Sports Analytics</span>
-                <span class="hero-tag">Healthcare</span>
-                <span class="hero-tag">IoT & Sensors</span>
+        <div class="container">
+            <div class="hero-content fade-in">
+                <div class="hero-wave floating">👋</div>
+                <div class="hero-typing">
+                    <div class="hero-typing-text">Hi, I'm Badar</div>
+                </div>
+                <p class="hero-tagline fade-in stagger-delay-1">I turn data, models, and ideas into impactful research.</p>
+                <h2 class="hero-subtitle fade-in stagger-delay-2">Bringing Novel Ideas to Life through Published Insights</h2>
+                <div class="hero-tags fade-in stagger-delay-3">
+                    <span class="hero-tag">Machine Learning</span>
+                    <span class="hero-tag">Sports Analytics</span>
+                    <span class="hero-tag">Healthcare</span>
+                    <span class="hero-tag">IoT & Sensors</span>
+                </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
+        <div class="scroll-indicator" id="scrollIndicator">
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </div>
     </header>
 
@@ -1010,60 +1627,60 @@
                 <h2>About Me</h2>
                 <p>A researcher dedicated to advancing AI and machine learning for real-world impact</p>
             </div>
-            <div class="about-content fade-in stagger-delay-1">
+            <div class="fade-in stagger-delay-1">
                 <div class="about-text">
                     <p>A researcher specializing in AI and machine learning, with expertise in predictive modeling, statistical modelling, deep learning, IoT, sensors, and signal processing. My impactful research, published in leading journals such as <em>IEEE</em>, <em>Springers</em>, <em>Wiley</em>, <em>CMC</em>, and <em>PeerJ</em>, has attained over <em>530 citations</em>, reflecting significant academic and practical contributions.</p>
                 </div>
 
-                <div class="skills-grid fade-in stagger-delay-2">
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                <div class="skills-grid">
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fas fa-robot" aria-hidden="true"></i></div>
                         <div class="skill-name">Machine Learning</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fas fa-chart-bar" aria-hidden="true"></i></div>
                         <div class="skill-name">Statistical Analysis</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-running"></i></div>
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fas fa-running" aria-hidden="true"></i></div>
                         <div class="skill-name">Sports Analytics</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
                         <div class="skill-name">Healthcare Data</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fab fa-python" aria-hidden="true"></i></div>
                         <div class="skill-name">Python</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
                         <div class="skill-name">R</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
                         <div class="skill-name">TensorFlow</div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="fas fa-wifi"></i></div>
+                    <div class="skill-card fade-in stagger-delay-2">
+                        <div class="skill-icon"><i class="fas fa-wifi" aria-hidden="true"></i></div>
                         <div class="skill-name">IoT</div>
                     </div>
                 </div>
 
-                <div class="metrics-grid fade-in stagger-delay-3">
-                    <div class="metric-card">
+                <div class="metrics-grid">
+                    <div class="metric-card fade-in stagger-delay-3">
                         <div class="metric-number">530+</div>
                         <div class="metric-label">Total Citations</div>
                     </div>
-                    <div class="metric-card">
+                    <div class="metric-card fade-in stagger-delay-3">
                         <div class="metric-number">12</div>
                         <div class="metric-label">Research Papers</div>
                     </div>
-                    <div class="metric-card">
+                    <div class="metric-card fade-in stagger-delay-3">
                         <div class="metric-number">5+</div>
                         <div class="metric-label">Years Experience</div>
                     </div>
-                    <div class="metric-card">
+                    <div class="metric-card fade-in stagger-delay-3">
                         <div class="metric-number">6</div>
                         <div class="metric-label">Research Areas</div>
                     </div>
@@ -1073,25 +1690,25 @@
     </section>
 
     <!-- Research Section -->
-    <section id="research">
+    <section id="research" class="section">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Research Focus</h2>
                 <p>Areas of expertise and ongoing research initiatives</p>
             </div>
-            <div class="research-grid fade-in stagger-delay-1">
-                <div class="research-card">
-                    <div class="research-icon"><i class="fas fa-brain"></i></div>
+            <div class="research-grid">
+                <div class="research-card fade-in stagger-delay-1">
+                    <div class="research-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
                     <h3>Artificial Intelligence</h3>
                     <p>Leveraging AI and machine learning to uncover insights in image, video, signal, and sports data. Developing novel algorithms for pattern recognition and predictive analytics.</p>
                 </div>
-                <div class="research-card">
-                    <div class="research-icon"><i class="fas fa-heartbeat"></i></div>
+                <div class="research-card fade-in stagger-delay-2">
+                    <div class="research-icon"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
                     <h3>Healthcare</h3>
                     <p>Investigating machine learning applications in healthcare data analytics, with a focus on predictive modelling, patient outcomes, and diagnostic assistance systems.</p>
                 </div>
-                <div class="research-card">
-                    <div class="research-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="research-card fade-in stagger-delay-3">
+                    <div class="research-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
                     <h3>Statistical Analysis</h3>
                     <p>Utilizing advanced statistical methods for data analysis and interpretation to inform decision-making processes in various sectors including sports and IoT.</p>
                 </div>
@@ -1099,21 +1716,21 @@
         </div>
     </section>
 
-    <!-- Research Impact Section - Improved Organization -->
-    <section id="data-visualization">
+    <!-- Research Impact Section -->
+    <section id="data-visualization" class="section">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Research Impact</h2>
                 <p>Quantitative overview of academic contributions and influence</p>
             </div>
-            <div class="data-grid fade-in stagger-delay-1">
-                <!-- Citation Metrics Card -->
-                <div class="data-card">
-                    <div class="data-card-header">
-                        <i class="fas fa-chart-line"></i>
-                        Citation Metrics
+            <div class="impact-grid">
+                <!-- Citation Metrics -->
+                <div class="impact-card fade-in stagger-delay-1">
+                    <div class="impact-header">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <span>Citation Metrics</span>
                     </div>
-                    <div class="data-card-body">
+                    <div class="impact-body">
                         <div class="citation-stats">
                             <div class="citation-stat">
                                 <div class="number">530+</div>
@@ -1135,52 +1752,52 @@
                     </div>
                 </div>
 
-                <!-- Publication Impact Card -->
-                <div class="data-card">
-                    <div class="data-card-header">
-                        <i class="fas fa-table"></i>
-                        Publication Impact
+                <!-- Publication Impact -->
+                <div class="impact-card fade-in stagger-delay-2">
+                    <div class="impact-header">
+                        <i class="fas fa-table" aria-hidden="true"></i>
+                        <span>Publication Impact</span>
                     </div>
-                    <div class="data-card-body">
+                    <div class="impact-body">
                         <div class="impact-list">
                             <div class="impact-item">
                                 <div class="publisher">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-book" aria-hidden="true"></i>
                                     <span>IEEE</span>
                                 </div>
                                 <div class="citations">231</div>
                             </div>
                             <div class="impact-item">
                                 <div class="publisher">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-book" aria-hidden="true"></i>
                                     <span>MDPI</span>
                                 </div>
                                 <div class="citations">245</div>
                             </div>
                             <div class="impact-item">
                                 <div class="publisher">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-book" aria-hidden="true"></i>
                                     <span>Springer</span>
                                 </div>
                                 <div class="citations">12</div>
                             </div>
                             <div class="impact-item">
                                 <div class="publisher">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-book" aria-hidden="true"></i>
                                     <span>CMC</span>
                                 </div>
                                 <div class="citations">6</div>
                             </div>
                             <div class="impact-item">
                                 <div class="publisher">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-book" aria-hidden="true"></i>
                                     <span>PEERJ</span>
                                 </div>
                                 <div class="citations">1</div>
                             </div>
                             <div class="impact-item">
                                 <div class="publisher">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-book" aria-hidden="true"></i>
                                     <span>Wiley</span>
                                 </div>
                                 <div class="citations">4</div>
@@ -1189,13 +1806,13 @@
                     </div>
                 </div>
 
-                <!-- Research Focus Card -->
-                <div class="data-card">
-                    <div class="data-card-header">
-                        <i class="fas fa-pie-chart"></i>
-                        Research Focus
+                <!-- Research Focus -->
+                <div class="impact-card fade-in stagger-delay-3">
+                    <div class="impact-header">
+                        <i class="fas fa-pie-chart" aria-hidden="true"></i>
+                        <span>Research Focus</span>
                     </div>
-                    <div class="data-card-body">
+                    <div class="impact-body">
                         <div class="focus-chart">
                             <div class="focus-item">
                                 <div class="focus-label">
@@ -1241,18 +1858,18 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
+    <section id="projects" class="section">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Projects</h2>
                 <p>Research-driven implementations with open-source code</p>
             </div>
-            <div class="projects-grid fade-in stagger-delay-1">
-                <div class="project-card">
+            <div class="projects-grid">
+                <div class="project-card fade-in stagger-delay-1">
                     <div class="project-image" style="background-image: url('https://user-images.githubusercontent.com/49350595/93660581-f197f800-fa69-11ea-8439-51d574360e98.png')"></div>
                     <div class="project-info">
-                        <h3>IM-WSHA Dataset</h3>
-                        <p>A comprehensive smart home dataset using triaxial IMU sensors for human activity recognition. Features 11 different activities captured from wrist, chest, and thigh regions.</p>
+                        <h3 class="project-title">IM-WSHA Dataset</h3>
+                        <p class="project-description">A comprehensive smart home dataset using triaxial IMU sensors for human activity recognition. Features 11 different activities captured from wrist, chest, and thigh regions.</p>
                         <div class="project-tags">
                             <span class="project-tag">Machine Learning</span>
                             <span class="project-tag">IoT</span>
@@ -1260,18 +1877,19 @@
                             <span class="project-tag">Python</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/sheikhbadar/IM-WSHA-Dataset" class="project-link github-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
+                            <a href="https://github.com/sheikhbadar/IM-WSHA-Dataset" class="project-link github" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                                <span>GitHub</span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card fade-in stagger-delay-2">
                     <div class="project-image" style="background-image: url('https://raw.githubusercontent.com/sheikhbadar/An-LSTM-based-Credit-Card-Fraud-Detection-System/refs/heads/main/assets/fraud-ui2.png')"></div>
                     <div class="project-info">
-                        <h3>LSTM-based Fraud Detection</h3>
-                        <p>Advanced fraud detection system using LSTM neural networks for real-time transaction analysis. Features multiple risk factors and user behavior pattern recognition.</p>
+                        <h3 class="project-title">LSTM-based Fraud Detection</h3>
+                        <p class="project-description">Advanced fraud detection system using LSTM neural networks for real-time transaction analysis. Features multiple risk factors and user behavior pattern recognition.</p>
                         <div class="project-tags">
                             <span class="project-tag">Deep Learning</span>
                             <span class="project-tag">LSTM</span>
@@ -1279,18 +1897,19 @@
                             <span class="project-tag">PyTorch</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/sheikhbadar/An-LSTM-based-Credit-Card-Fraud-Detection-System" class="project-link github-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
+                            <a href="https://github.com/sheikhbadar/An-LSTM-based-Credit-Card-Fraud-Detection-System" class="project-link github" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                                <span>GitHub</span>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card fade-in stagger-delay-3">
                     <div class="project-image" style="background-image: url('https://raw.githubusercontent.com/sheikhbadar/smart-home-capsule/refs/heads/master/screenshots/dashboard.png')"></div>
                     <div class="project-info">
-                        <h3>Context-Aware Smart Home</h3>
-                        <p>CAPSULE is a modular smart home framework leveraging context-aware reasoning and predictive control for real-time IoT device automation and behavior prediction.</p>
+                        <h3 class="project-title">Context-Aware Smart Home</h3>
+                        <p class="project-description">CAPSULE is a modular smart home framework leveraging context-aware reasoning and predictive control for real-time IoT device automation and behavior prediction.</p>
                         <div class="project-tags">
                             <span class="project-tag">Context-Aware</span>
                             <span class="project-tag">Predictive Modelling</span>
@@ -1298,8 +1917,9 @@
                             <span class="project-tag">IoT</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/sheikhbadar/smart-home-capsule" class="project-link github-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
+                            <a href="https://github.com/sheikhbadar/smart-home-capsule" class="project-link github" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                                <span>GitHub</span>
                             </a>
                         </div>
                     </div>
@@ -1309,189 +1929,179 @@
     </section>
 
     <!-- Publications Section -->
-    <section id="publications">
+    <section id="publications" class="section">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Publications</h2>
                 <p>Peer-reviewed research in leading journals and conferences</p>
             </div>
-            <div class="publications-grid fade-in stagger-delay-1">
-                <div class="publication">
+            <div class="publications-grid">
+                <article class="publication-card fade-in stagger-delay-1">
                     <h3 class="publication-title">
-                        <a href="https://ieeexplore.ieee.org/document/9426893" target="_blank">Monitoring real-time personal locomotion behaviors over smart indoor-outdoor environments via body-worn sensors</a>
+                        <a href="https://ieeexplore.ieee.org/document/9426893" target="_blank" rel="noopener noreferrer">Monitoring real-time personal locomotion behaviors over smart indoor-outdoor environments via body-worn sensors</a>
                     </h3>
                     <div class="publication-meta">
-                        <span><i class="fas fa-book"></i> IEEE Access</span>
-                        <span><i class="fas fa-calendar"></i> 2021</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>IEEE Access</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2021</span>
                     </div>
-                    <div class="publication-authors">
-                        M Gochoo, SB ud din Tahir, A Jalal, K Kim
-                    </div>
+                    <p class="publication-authors">M Gochoo, SB ud din Tahir, A Jalal, K Kim</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right"></i> 67 citations</div>
-                        <div class="metric-badge"><i class="fas fa-star"></i> Q1 Journal</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>67 citations</div>
+                        <div class="metric-badge"><i class="fas fa-star" aria-hidden="true"></i>Q1 Journal</div>
                     </div>
-                    <a href="https://ieeexplore.ieee.org/document/9426893" class="publication-link" target="_blank">
-                        <i class="fas fa-file-alt"></i> View Article
+                    <a href="https://ieeexplore.ieee.org/document/9426893" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        <span>View Article</span>
                     </a>
-                </div>
+                </article>
 
-                <div class="publication">
+                <article class="publication-card fade-in stagger-delay-2">
                     <h3 class="publication-title">
-                        <a href="https://www.techscience.com/cmc/v75n1/51517" target="_blank">Human Verification over Activity Analysis via Deep Data Mining</a>
+                        <a href="https://www.techscience.com/cmc/v75n1/51517" target="_blank" rel="noopener noreferrer">Human Verification over Activity Analysis via Deep Data Mining</a>
                     </h3>
                     <div class="publication-meta">
-                        <span><i class="fas fa-book"></i> Computers, Materials and Continua</span>
-                        <span><i class="fas fa-calendar"></i> 2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Computers, Materials and Continua</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
                     </div>
-                    <div class="publication-authors">
-                        K Abhishek, SB ud din Tahir
-                    </div>
+                    <p class="publication-authors">K Abhishek, SB ud din Tahir</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right"></i> 5 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>5 citations</div>
                     </div>
-                    <a href="https://www.techscience.com/cmc/v75n1/51517" class="publication-link" target="_blank">
-                        <i class="fas fa-file-alt"></i> View Article
+                    <a href="https://www.techscience.com/cmc/v75n1/51517" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        <span>View Article</span>
                     </a>
-                </div>
+                </article>
 
-                <div class="publication">
+                <article class="publication-card fade-in stagger-delay-3">
                     <h3 class="publication-title">
-                        <a href="https://peerj.com/articles/cs-1619/" target="_blank">Hand gesture recognition via deep data optimization and 3D reconstruction</a>
+                        <a href="https://peerj.com/articles/cs-1619/" target="_blank" rel="noopener noreferrer">Hand gesture recognition via deep data optimization and 3D reconstruction</a>
                     </h3>
                     <div class="publication-meta">
-                        <span><i class="fas fa-book"></i> PeerJ Computer Science</span>
-                        <span><i class="fas fa-calendar"></i> 2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>PeerJ Computer Science</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
                     </div>
-                    <div class="publication-authors">
-                        Z Mustafa, H Nsour, SB ud din Tahir
-                    </div>
+                    <p class="publication-authors">Z Mustafa, H Nsour, SB ud din Tahir</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right"></i> 1 citation</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>1 citation</div>
                     </div>
-                    <a href="https://peerj.com/articles/cs-1619/" class="publication-link" target="_blank">
-                        <i class="fas fa-file-alt"></i> View Article
+                    <a href="https://peerj.com/articles/cs-1619/" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        <span>View Article</span>
                     </a>
-                </div>
+                </article>
 
-                <div class="publication">
+                <article class="publication-card fade-in stagger-delay-1">
                     <h3 class="publication-title">
-                        <a href="https://www.mdpi.com/1099-4300/22/5/579" target="_blank">Wearable inertial sensors for daily activity analysis based on adam optimization and the maximum entropy Markov model</a>
+                        <a href="https://www.mdpi.com/1099-4300/22/5/579" target="_blank" rel="noopener noreferrer">Wearable inertial sensors for daily activity analysis based on adam optimization and the maximum entropy Markov model</a>
                     </h3>
                     <div class="publication-meta">
-                        <span><i class="fas fa-book"></i> Entropy (MDPI)</span>
-                        <span><i class="fas fa-calendar"></i> 2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Entropy (MDPI)</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
                     </div>
-                    <div class="publication-authors">
-                        SB ud din Tahir, A Jalal, K Kim
-                    </div>
+                    <p class="publication-authors">SB ud din Tahir, A Jalal, K Kim</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right"></i> 122 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>122 citations</div>
                     </div>
-                    <a href="https://www.mdpi.com/1099-4300/22/5/579" class="publication-link" target="_blank">
-                        <i class="fas fa-file-alt"></i> View Article
+                    <a href="https://www.mdpi.com/1099-4300/22/5/579" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        <span>View Article</span>
                     </a>
-                </div>
+                </article>
 
-                <div class="publication">
+                <article class="publication-card fade-in stagger-delay-2">
                     <h3 class="publication-title">
-                        <a href="https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428" target="_blank">Anomaly Prediction over Human Crowded Scenes via Associate-Based Data Mining and K-Ary Tree Hashing</a>
+                        <a href="https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428" target="_blank" rel="noopener noreferrer">Anomaly Prediction over Human Crowded Scenes via Associate-Based Data Mining and K-Ary Tree Hashing</a>
                     </h3>
                     <div class="publication-meta">
-                        <span><i class="fas fa-book"></i> Int. Journal of Intelligent Systems</span>
-                        <span><i class="fas fa-calendar"></i> 2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Int. Journal of Intelligent Systems</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
                     </div>
-                    <div class="publication-authors">
-                        A Yasin, SB ud din Tahir, J Frnda, R Fatima, J Ali Khan, MS Anwar
-                    </div>
+                    <p class="publication-authors">A Yasin, SB ud din Tahir, J Frnda, R Fatima, J Ali Khan, MS Anwar</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right"></i> 4 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>4 citations</div>
                     </div>
-                    <a href="https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428" class="publication-link" target="_blank">
-                        <i class="fas fa-file-alt"></i> View Article
+                    <a href="https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        <span>View Article</span>
                     </a>
-                </div>
+                </article>
 
-                <div class="publication">
+                <article class="publication-card fade-in stagger-delay-3">
                     <h3 class="publication-title">
-                        <a href="https://www.mdpi.com/1424-8220/20/22/6670" target="_blank">A Study of Accelerometer and Gyroscope Measurements in Physical Life-Log Activities Detection Systems</a>
+                        <a href="https://www.mdpi.com/1424-8220/20/22/6670" target="_blank" rel="noopener noreferrer">A Study of Accelerometer and Gyroscope Measurements in Physical Life-Log Activities Detection Systems</a>
                     </h3>
                     <div class="publication-meta">
-                        <span><i class="fas fa-book"></i> Sensors (MDPI)</span>
-                        <span><i class="fas fa-calendar"></i> 2020</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Sensors (MDPI)</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2020</span>
                     </div>
-                    <div class="publication-authors">
-                        A Jalal, MAK Quaid, SB ud din Tahir, K Kim
-                    </div>
+                    <p class="publication-authors">A Jalal, MAK Quaid, SB ud din Tahir, K Kim</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right"></i> 99 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>99 citations</div>
                     </div>
-                    <a href="https://www.mdpi.com/1424-8220/20/22/6670" class="publication-link" target="_blank">
-                        <i class="fas fa-file-alt"></i> View Article
+                    <a href="https://www.mdpi.com/1424-8220/20/22/6670" class="publication-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        <span>View Article</span>
                     </a>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" class="section">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Get In Touch</h2>
                 <p>Looking to collaborate on research or have an exciting project? Let's connect!</p>
             </div>
-            <div class="contact-content fade-in stagger-delay-1">
-                <form action="mailto:badar@protonmail.com" method="post" enctype="text/plain">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or collaboration idea..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
+            <form class="contact-form fade-in stagger-delay-1" action="mailto:badar@protonmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label class="form-label" for="name">Your Name</label>
+                    <input class="form-input" type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Your Message</label>
+                    <textarea class="form-textarea" id="message" name="message" rows="5" placeholder="Tell me about your project or collaboration idea..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </form>
         </div>
     </section>
 
-    <!-- Footer with Color-Matched Flag Counter -->
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <p class="copyright">&copy; 2024 Sheikh Badar Ud Din Tahir. All rights reserved.</p>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/sheikhbadaruddintahir/" class="social-icon" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/sheikhbadaruddintahir/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.researchgate.net/profile/Sheikh-Tahir" class="social-icon" target="_blank" aria-label="ResearchGate">
-                        <i class="fab fa-researchgate"></i>
+                    <a href="https://www.researchgate.net/profile/Sheikh-Tahir" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate">
+                        <i class="fab fa-researchgate" aria-hidden="true"></i>
                     </a>
-                    <a href="https://scholar.google.com/citations?hl=en&user=f0XUQu8AAAAJ" class="social-icon" target="_blank" aria-label="Google Scholar">
-                        <i class="fab fa-google"></i>
+                    <a href="https://scholar.google.com/citations?hl=en&user=f0XUQu8AAAAJ" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
+                        <i class="fab fa-google" aria-hidden="true"></i>
                     </a>
-                    <a href="https://github.com/sheikhbadar" class="social-icon" target="_blank" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/sheikhbadar" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
                     </a>
-                    <a href="mailto:badar@protonmail.com" class="social-icon" target="_blank" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
+                    <a href="mailto:badar@protonmail.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Email">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                     </a>
                 </div>
-                <!-- Color-matched flag counter -->
                 <div class="flag-counter">
-                    <a href="https://info.flagcounter.com/ZrS2">
+                    <a href="https://info.flagcounter.com/ZrS2" target="_blank" rel="noopener noreferrer">
                         <img src="https://s01.flagcounter.com/count2/ZrS2/bg_0A0E1A/txt_818CF8/border_121825/columns_3/maxflags_20/viewers_Collaborators/labels_1/pageviews_1/flags_0/percent_0/" 
-                             alt="Visitor counter" border="0" 
-                             style="border-radius: 12px; border: 1px solid var(--border-color);">
+                             alt="Visitor counter">
                     </a>
                 </div>
             </div>
@@ -1500,234 +2110,330 @@
 
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <script>
         // ==========================================================================
-        // 1. Initial Setup & Page Load
+        // PORTFOLIO JAVASCRIPT - Modular & Organized
         // ==========================================================================
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelector('.loader').classList.add('hidden');
-            }, 600);
-        });
 
         // ==========================================================================
-        // 2. Intersection Observer for Scroll Animations
+        // 1. Constants & Configuration
         // ==========================================================================
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+        const SELECTORS = {
+            loader: '#loader',
+            progressBar: '#progressBar',
+            navbar: '#navbar',
+            navMenu: '#navMenu',
+            menuToggle: '#menuToggle',
+            menuOverlay: '#menuOverlay',
+            themeToggle: '#themeToggle',
+            scrollIndicator: '#scrollIndicator',
+            backToTop: '#backToTop',
+            fadeElements: '.fade-in',
+            sectionTitles: '.section-title'
         };
 
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        const CLASSES = {
+            active: 'active',
+            visible: 'visible',
+            scrolled: 'scrolled',
+            floating: 'floating'
+        };
+
+        // ==========================================================================
+        // 2. Utility Functions
+        // ==========================================================================
+        const debounce = (func, wait) => {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func(...args), wait);
+            };
+        };
+
+        const throttle = (func, limit) => {
+            let inThrottle;
+            return (...args) => {
+                if (!inThrottle) {
+                    func(...args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
                 }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            fadeObserver.observe(el);
-        });
+            };
+        };
 
         // ==========================================================================
-        // 3. Progress Bar
+        // 3. Loading & Progress Management
         // ==========================================================================
-        const progressBar = document.querySelector('.progress-bar');
-        
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            progressBar.style.width = scrollPercent + '%';
-        });
+        const LoadingManager = {
+            init() {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        document.querySelector(SELECTORS.loader).classList.add(CLASSES.hidden);
+                    }, 600);
+                });
+            },
 
-        // ==========================================================================
-        // 4. Navbar Scroll Behavior
-        // ==========================================================================
-        const navbar = document.getElementById('navbar');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.querySelector(SELECTORS.progressBar).style.width = scrollPercent + '%';
             }
-        });
+        };
 
         // ==========================================================================
-        // 5. Smooth Scrolling
+        // 4. Navigation Manager
         // ==========================================================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        const NavigationManager = {
+            init() {
+                this.bindEvents();
+                this.setupIntersectionObserver();
+            },
+
+            bindEvents() {
+                // Mobile menu toggle
+                document.querySelector(SELECTORS.menuToggle).addEventListener('click', () => this.toggleMenu());
+                document.querySelector(SELECTORS.menuOverlay).addEventListener('click', () => this.toggleMenu());
+                
+                // Smooth scrolling for nav links
+                document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+                    link.addEventListener('click', (e) => this.handleNavLinkClick(e));
+                });
+
+                // Scroll behavior
+                window.addEventListener('scroll', throttle(() => this.handleScroll(), 50));
+                
+                // Scroll indicator
+                document.querySelector(SELECTORS.scrollIndicator).addEventListener('click', () => {
+                    document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                });
+            },
+
+            toggleMenu() {
+                const menu = document.querySelector(SELECTORS.navMenu);
+                const overlay = document.querySelector(SELECTORS.menuOverlay);
+                const hamburger = document.querySelector(SELECTORS.menuToggle);
+                
+                menu.classList.toggle(CLASSES.active);
+                overlay.classList.toggle(CLASSES.active);
+                hamburger.classList.toggle(CLASSES.active);
+                
+                const isOpen = menu.classList.contains(CLASSES.active);
+                document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+            },
+
+            handleNavLinkClick(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(e.target.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    document.querySelector(SELECTORS.navMenu).classList.remove(CLASSES.active);
+                    document.querySelector(SELECTORS.menuOverlay).classList.remove(CLASSES.active);
+                    document.querySelector(SELECTORS.menuToggle).classList.remove(CLASSES.active);
+                    document.body.style.overflow = 'auto';
+                }
+            },
+
+            handleScroll() {
+                const navbar = document.querySelector(SELECTORS.navbar);
+                if (window.scrollY > 50) {
+                    navbar.classList.add(CLASSES.scrolled);
+                } else {
+                    navbar.classList.remove(CLASSES.scrolled);
+                }
+
+                // Back to top visibility
+                const backToTop = document.querySelector(SELECTORS.backToTop);
+                if (window.scrollY > 300) {
+                    backToTop.classList.add(CLASSES.visible);
+                } else {
+                    backToTop.classList.remove(CLASSES.visible);
+                }
+
+                // Update progress
+                LoadingManager.updateProgress();
+            },
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add(CLASSES.visible);
+                        }
                     });
-                }
-            });
-        });
+                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Scroll indicator
-        document.querySelector('.scroll-indicator').addEventListener('click', () => {
-            document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // ==========================================================================
-        // 6. Mobile Menu Toggle
-        // ==========================================================================
-        const hamburger = document.querySelector('.hamburger');
-        const menuOverlay = document.querySelector('.menu-overlay');
-        
-        function toggleMenu() {
-            hamburger.classList.toggle('active');
-            document.querySelector('.navbar').classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : 'auto';
-        }
-
-        hamburger.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', toggleMenu);
-
-        document.querySelectorAll('.navbar a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                document.querySelector('.navbar').classList.remove('active');
-                menuOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
-
-        // ==========================================================================
-        // 7. Theme Toggle
-        // ==========================================================================
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-        const themeIcon = themeToggle.querySelector('i');
-
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', currentTheme);
-        updateThemeIcon(currentTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-
-        function updateThemeIcon(theme) {
-            themeIcon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-
-        // ==========================================================================
-        // 8. Back to Top Button
-        // ==========================================================================
-        const backToTopBtn = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
+                // Observe all fade-in elements
+                document.querySelectorAll(SELECTORS.fadeElements).forEach(el => {
+                    observer.observe(el);
+                });
             }
-        });
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        };
 
         // ==========================================================================
-        // 9. Form Handling
+        // 5. Theme Manager
         // ==========================================================================
-        const contactForm = document.querySelector('#contact form');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            const subject = `Collaboration Inquiry from ${name}`;
-            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-            
-            window.location.href = `mailto:badar@protonmail.com?subject=${subject}&body=${body}`;
-            
-            setTimeout(() => {
-                contactForm.reset();
-            }, 1000);
-        });
+        const ThemeManager = {
+            init() {
+                this.loadTheme();
+                document.querySelector(SELECTORS.themeToggle).addEventListener('click', () => this.toggleTheme());
+            },
+
+            loadTheme() {
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                this.updateIcon(savedTheme);
+            },
+
+            toggleTheme() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                this.updateIcon(newTheme);
+            },
+
+            updateIcon(theme) {
+                const icon = document.querySelector(`${SELECTORS.themeToggle} i`);
+                icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        };
 
         // ==========================================================================
-        // 10. Dynamic Year in Footer
+        // 6. Form Manager
         // ==========================================================================
-        const currentYear = new Date().getFullYear();
-        document.querySelector('.copyright').innerHTML = 
-            `&copy; ${currentYear} Sheikh Badar Ud Din Tahir. All rights reserved.`;
+        const FormManager = {
+            init() {
+                document.querySelector('.contact-form').addEventListener('submit', (e) => this.handleSubmit(e));
+            },
+
+            handleSubmit(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(e.target);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+                
+                const subject = `Collaboration Inquiry from ${name}`;
+                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+                
+                window.location.href = `mailto:badar@protonmail.com?subject=${subject}&body=${body}`;
+                
+                setTimeout(() => {
+                    e.target.reset();
+                }, 1000);
+            }
+        };
 
         // ==========================================================================
-        // 11. Add stagger delays automatically
+        // 7. Animation Manager
         // ==========================================================================
-        function addStaggerDelays() {
-            const grids = document.querySelectorAll('.skills-grid, .metrics-grid, .research-grid, .data-grid, .projects-grid, .publications-grid');
-            
-            grids.forEach(grid => {
-                const children = grid.children;
-                for (let i = 0; i < children.length; i++) {
-                    children[i].classList.add(`stagger-delay-${(i % 4) + 1}`);
-                }
-            });
-        }
+        const AnimationManager = {
+            init() {
+                this.setupFocusChartAnimation();
+                this.setupFloatingElements();
+                this.setupStaggerDelays();
+            },
 
-        document.addEventListener('DOMContentLoaded', addStaggerDelays);
-
-        // ==========================================================================
-        // 12. Research Focus Bars Animation
-        // ==========================================================================
-        const focusObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.focus-progress');
-                    progressBars.forEach(bar => {
-                        bar.style.width = bar.style.width || '0%';
-                        setTimeout(() => {
-                            bar.style.width = bar.getAttribute('data-width') || bar.style.width;
-                        }, 100);
+            setupFocusChartAnimation() {
+                const focusObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const progressBars = entry.target.querySelectorAll('.focus-progress');
+                            progressBars.forEach(bar => {
+                                const width = bar.style.width;
+                                bar.style.width = '0%';
+                                setTimeout(() => {
+                                    bar.style.width = width;
+                                }, 100);
+                            });
+                        }
                     });
-                }
-            });
-        }, observerOptions);
+                }, { threshold: 0.3 });
 
-        document.querySelectorAll('.focus-chart').forEach(chart => {
-            focusObserver.observe(chart);
-        });
+                document.querySelectorAll('.focus-chart').forEach(chart => {
+                    focusObserver.observe(chart);
+                });
+            },
 
-        // Store original widths
-        document.querySelectorAll('.focus-progress').forEach(bar => {
-            bar.setAttribute('data-width', bar.style.width);
-        });
+            setupFloatingElements() {
+                // Add floating animation to every 3rd card
+                document.querySelectorAll('.project-card, .publication-card, .metric-card').forEach((el, index) => {
+                    if (index % 3 === 0) {
+                        el.classList.add(CLASSES.floating);
+                        el.style.animationDelay = `${index * 0.2}s`;
+                        el.style.animationDuration = `${4 + index * 0.5}s`;
+                    }
+                });
+            },
 
-        // ==========================================================================
-        // 13. Add floating animation to elements
-        // ==========================================================================
-        document.querySelectorAll('.project-card, .publication, .metric-card').forEach((el, index) => {
-            if (index % 3 === 0) {
-                el.classList.add('floating');
-                el.style.animationDelay = `${index * 0.2}s`;
-                el.style.animationDuration = `${4 + index * 0.5}s`;
+            setupStaggerDelays() {
+                document.querySelectorAll('.skills-grid, .metrics-grid, .research-grid, .impact-grid, .projects-grid, .publications-grid').forEach(grid => {
+                    const children = grid.children;
+                    for (let i = 0; i < children.length; i++) {
+                        children[i].classList.add(`stagger-delay-${(i % 4) + 1}`);
+                    }
+                });
             }
-        });
+        };
+
+        // ==========================================================================
+        // 8. Dynamic Content Manager
+        // ==========================================================================
+        const DynamicContentManager = {
+            init() {
+                this.updateCopyrightYear();
+                this.setupBackToTop();
+            },
+
+            updateCopyrightYear() {
+                const currentYear = new Date().getFullYear();
+                document.querySelector('.copyright').textContent = `© ${currentYear} Sheikh Badar Ud Din Tahir. All rights reserved.`;
+            },
+
+            setupBackToTop() {
+                document.querySelector(SELECTORS.backToTop).addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        };
+
+        // ==========================================================================
+        // 9. Application Initialization
+        // ==========================================================================
+        const PortfolioApp = {
+            init() {
+                console.log('🚀 Initializing Portfolio...');
+                
+                // Initialize all managers
+                LoadingManager.init();
+                NavigationManager.init();
+                ThemeManager.init();
+                FormManager.init();
+                AnimationManager.init();
+                DynamicContentManager.init();
+
+                // Add load event for remaining animations
+                window.addEventListener('load', () => {
+                    AnimationManager.setupStaggerDelays();
+                });
+
+                console.log('✅ Portfolio Initialized Successfully');
+            }
+        };
+
+        // Initialize the application when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => PortfolioApp.init());
+        } else {
+            PortfolioApp.init();
+        }
     </script>
 </body>
 </html>
