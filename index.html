@@ -2328,10 +2328,17 @@
             },
 
             loadTheme() {
-                const savedTheme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                this.updateIcon(savedTheme);
-            },
+    let savedTheme = localLocalStorage.getItem('theme');
+
+    if (!savedTheme) {
+        savedTheme = 'light'; // default theme
+        localStorage.setItem('theme', 'light');
+    }
+
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    this.updateIcon(savedTheme);
+}
+
 
             toggleTheme() {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
