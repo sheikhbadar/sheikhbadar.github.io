@@ -2328,16 +2328,11 @@
             },
 
             loadTheme() {
-    let savedTheme = localLocalStorage.getItem('theme');
-
-    if (!savedTheme) {
-        savedTheme = 'light'; // default theme
-        localStorage.setItem('theme', 'light');
-    }
-
+    const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     this.updateIcon(savedTheme);
 }
+
 
 
             toggleTheme() {
