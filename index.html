@@ -106,21 +106,7 @@
         }
 
         /* ==========================================================================
-           3. Layout Utilities
-           ========================================================================== */
-        .container {
-            max-width: var(--container-max-width);
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-        }
-
-        section {
-            padding: var(--space-section) 0;
-            position: relative;
-        }
-
-        /* ==========================================================================
-           4. Loading & Progress Components
+           3. Loading Component - CRITICAL FIX
            ========================================================================== */
         .loader {
             position: fixed;
@@ -136,10 +122,6 @@
         .loader.hidden {
             opacity: 0;
             pointer-events: none;
-        }
-
-        .loader-content {
-            text-align: center;
         }
 
         .loader-circle {
@@ -166,16 +148,18 @@
             font-weight: 700;
         }
 
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: var(--color-accent-gradient);
-            z-index: var(--z-progress);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--color-glow);
+        /* ==========================================================================
+           4. Layout Utilities
+           ========================================================================== */
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        section {
+            padding: var(--space-section) 0;
+            position: relative;
         }
 
         /* ==========================================================================
@@ -485,14 +469,6 @@
         .section-title {
             text-align: center;
             margin-bottom: var(--space-8);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all var(--transition-medium);
-        }
-
-        .section-title.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .section-title h2 {
@@ -583,7 +559,7 @@
             opacity: 0.5;
         }
 
-        /* Skill Cards */
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -642,7 +618,7 @@
             font-size: 0.95rem;
         }
 
-        /* Metric Cards */
+        /* Metrics */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -778,7 +754,7 @@
         }
 
         /* ==========================================================================
-           10. Research Impact Section - Improved Organization
+           10. Research Impact Section
            ========================================================================== */
         .impact-grid {
             display: grid;
@@ -1253,7 +1229,7 @@
         }
 
         /* ==========================================================================
-           14. Footer Component
+           14. Footer
            ========================================================================== */
         .footer {
             background: var(--color-primary-bg);
@@ -1332,46 +1308,24 @@
             border-color: var(--color-accent-primary);
             box-shadow: 0 0 15px var(--color-glow);
         }
-        .flag-counter-section {
-    margin: var(--space-8) auto 0;
-    max-width: 600px;
-}
-
-.flag-counter-title {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-accent-primary);
-    text-align: center;
-    margin-bottom: var(--space-4);
-}
-
-.flag-counter-container {
-    display: flex;
-    justify-content: center;
-    padding: var(--space-4);
-    background: rgba(129, 140, 248, 0.05);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-text-muted);
-    transition: all var(--transition-medium);
-}
-
-.flag-counter-container:hover {
-    border-color: var(--color-accent-primary);
-    box-shadow: 0 0 20px var(--color-glow);
-}
-
-.flag-counter-enhanced {
-    transform: scale(1.2);
-    transition: transform 0.4s ease;
-}
-
-.flag-counter-enhanced:hover {
-    transform: scale(1.25);
-}
 
         /* ==========================================================================
-           15. Back to Top Component
+           15. Progress Bar
+           ========================================================================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--color-accent-gradient);
+            z-index: var(--z-progress);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--color-glow);
+        }
+
+        /* ==========================================================================
+           16. Back to Top
            ========================================================================== */
         .back-to-top {
             position: fixed;
@@ -1406,7 +1360,7 @@
         }
 
         /* ==========================================================================
-           16. Animation Utilities
+           17. Animation Utilities
            ========================================================================== */
         .fade-in {
             opacity: 0;
@@ -1434,7 +1388,7 @@
         }
 
         /* ==========================================================================
-           17. Responsive Design
+           18. Responsive Design
            ========================================================================== */
         @media (max-width: 768px) {
             .menu-toggle {
@@ -1528,7 +1482,7 @@
         }
 
         /* ==========================================================================
-           18. Accessibility & Print
+           19. Accessibility & Print
            ========================================================================== */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -1637,17 +1591,18 @@
     <header class="hero">
         <div class="hero-pattern"></div>
         <div class="container">
-            <div class="hero-content fade-in">
+            <div class="hero-content">
                 <div class="hero-wave floating">👋</div>
                 <div class="hero-typing">
                     <div class="hero-typing-text">Hi, I'm Badar</div>
                 </div>
                 <p class="hero-tagline fade-in stagger-delay-1">I turn data, models, and ideas into impactful research.</p>
+                <h2 class="hero-subtitle fade-in stagger-delay-2">Bringing Novel Ideas to Life through Published Insights</h2>
                 <div class="hero-tags fade-in stagger-delay-3">
                     <span class="hero-tag">Machine Learning</span>
                     <span class="hero-tag">Sports Analytics</span>
-                    <span class="hero-tag">Deep Learning</span>
-                    <span class="hero-tag">Predictive Modelling</span>
+                    <span class="hero-tag">Healthcare</span>
+                    <span class="hero-tag">IoT & Sensors</span>
                 </div>
             </div>
         </div>
@@ -1661,10 +1616,11 @@
         <div class="container">
             <div class="section-title fade-in">
                 <h2>About Me</h2>
+                <p>A researcher dedicated to advancing AI and machine learning for real-world impact</p>
             </div>
             <div class="fade-in stagger-delay-1">
                 <div class="about-text">
-                    <p>A researcher specializing in AI and machine learning, with expertise in predictive modeling, statistical modelling, sports analytics, and uncertainity quantification. My impactful research, published in leading journals such as <em>IEEE</em>, <em>Springers</em>, <em>Wiley</em>, <em>CMC</em>, and <em>PeerJ</em>, has attained over <em>600 citations</em>, reflecting significant academic and practical contributions.</p>
+                    <p>A researcher specializing in AI and machine learning, with expertise in predictive modeling, statistical modelling, deep learning, IoT, sensors, and signal processing. My impactful research, published in leading journals such as <em>IEEE</em>, <em>Springers</em>, <em>Wiley</em>, <em>CMC</em>, and <em>PeerJ</em>, has attained over <em>530 citations</em>, reflecting significant academic and practical contributions.</p>
                 </div>
 
                 <div class="skills-grid">
@@ -1694,7 +1650,7 @@
                     </div>
                     <div class="skill-card fade-in stagger-delay-2">
                         <div class="skill-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
-                        <div class="skill-name">MATLAB</div>
+                        <div class="skill-name">TensorFlow</div>
                     </div>
                     <div class="skill-card fade-in stagger-delay-2">
                         <div class="skill-icon"><i class="fas fa-wifi" aria-hidden="true"></i></div>
@@ -1704,7 +1660,7 @@
 
                 <div class="metrics-grid">
                     <div class="metric-card fade-in stagger-delay-3">
-                        <div class="metric-number">600+</div>
+                        <div class="metric-number">530+</div>
                         <div class="metric-label">Total Citations</div>
                     </div>
                     <div class="metric-card fade-in stagger-delay-3">
@@ -1712,7 +1668,7 @@
                         <div class="metric-label">Research Papers</div>
                     </div>
                     <div class="metric-card fade-in stagger-delay-3">
-                        <div class="metric-number">6+</div>
+                        <div class="metric-number">5+</div>
                         <div class="metric-label">Years Experience</div>
                     </div>
                     <div class="metric-card fade-in stagger-delay-3">
@@ -1725,7 +1681,7 @@
     </section>
 
     <!-- Research Section -->
-    <section id="research" class="section">
+    <section id="research">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Research Focus</h2>
@@ -1752,7 +1708,7 @@
     </section>
 
     <!-- Research Impact Section -->
-    <section id="data-visualization" class="section">
+    <section id="data-visualization">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Research Impact</h2>
@@ -1768,7 +1724,7 @@
                     <div class="impact-body">
                         <div class="citation-stats">
                             <div class="citation-stat">
-                                <div class="number">600+</div>
+                                <div class="number">530+</div>
                                 <div class="label">Total Citations</div>
                             </div>
                             <div class="citation-stat">
@@ -1869,7 +1825,7 @@
                             </div>
                             <div class="focus-item">
                                 <div class="focus-label">
-                                    <span>Data Science</span>
+                                    <span>Healthcare</span>
                                     <span class="percentage">20%</span>
                                 </div>
                                 <div class="focus-bar">
@@ -1878,7 +1834,7 @@
                             </div>
                             <div class="focus-item">
                                 <div class="focus-label">
-                                    <span> Computer Vision</span>
+                                    <span>IoT & Sensors</span>
                                     <span class="percentage">15%</span>
                                 </div>
                                 <div class="focus-bar">
@@ -1893,7 +1849,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section">
+    <section id="projects">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Projects</h2>
@@ -1964,10 +1920,10 @@
     </section>
 
     <!-- Publications Section -->
-    <section id="publications" class="section">
+    <section id="publications">
         <div class="container">
             <div class="section-title fade-in">
-                <h2> Key Publications</h2>
+                <h2>Publications</h2>
                 <p>Peer-reviewed research in leading journals and conferences</p>
             </div>
             <div class="publications-grid">
@@ -1976,13 +1932,13 @@
                         <a href="https://ieeexplore.ieee.org/document/9426893" target="_blank" rel="noopener noreferrer">Monitoring real-time personal locomotion behaviors over smart indoor-outdoor environments via body-worn sensors</a>
                     </h3>
                     <div class="publication-meta">
-                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>IEEE Access</span>
-                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2021</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i> IEEE Access</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i> 2021</span>
                     </div>
                     <p class="publication-authors">M Gochoo, SB ud din Tahir, A Jalal, K Kim</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>74 citations</div>
-                        <div class="metric-badge"><i class="fas fa-star" aria-hidden="true"></i>Q1 Journal</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i> 67 citations</div>
+                        <div class="metric-badge"><i class="fas fa-star" aria-hidden="true"></i> Q1 Journal</div>
                     </div>
                     <a href="https://ieeexplore.ieee.org/document/9426893" class="publication-link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-alt" aria-hidden="true"></i>
@@ -1995,12 +1951,12 @@
                         <a href="https://www.techscience.com/cmc/v75n1/51517" target="_blank" rel="noopener noreferrer">Human Verification over Activity Analysis via Deep Data Mining</a>
                     </h3>
                     <div class="publication-meta">
-                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Computers, Materials and Continua</span>
-                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i> Computers, Materials and Continua</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i> 2023</span>
                     </div>
                     <p class="publication-authors">K Abhishek, SB ud din Tahir</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>11 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i> 5 citations</div>
                     </div>
                     <a href="https://www.techscience.com/cmc/v75n1/51517" class="publication-link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-alt" aria-hidden="true"></i>
@@ -2013,12 +1969,12 @@
                         <a href="https://peerj.com/articles/cs-1619/" target="_blank" rel="noopener noreferrer">Hand gesture recognition via deep data optimization and 3D reconstruction</a>
                     </h3>
                     <div class="publication-meta">
-                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>PeerJ Computer Science</span>
-                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i> PeerJ Computer Science</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i> 2023</span>
                     </div>
                     <p class="publication-authors">Z Mustafa, H Nsour, SB ud din Tahir</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>4 citation</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i> 1 citation</div>
                     </div>
                     <a href="https://peerj.com/articles/cs-1619/" class="publication-link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-alt" aria-hidden="true"></i>
@@ -2031,12 +1987,12 @@
                         <a href="https://www.mdpi.com/1099-4300/22/5/579" target="_blank" rel="noopener noreferrer">Wearable inertial sensors for daily activity analysis based on adam optimization and the maximum entropy Markov model</a>
                     </h3>
                     <div class="publication-meta">
-                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Entropy (MDPI)</span>
-                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i> Entropy (MDPI)</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i> 2023</span>
                     </div>
                     <p class="publication-authors">SB ud din Tahir, A Jalal, K Kim</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>122 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i> 122 citations</div>
                     </div>
                     <a href="https://www.mdpi.com/1099-4300/22/5/579" class="publication-link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-alt" aria-hidden="true"></i>
@@ -2049,12 +2005,12 @@
                         <a href="https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428" target="_blank" rel="noopener noreferrer">Anomaly Prediction over Human Crowded Scenes via Associate-Based Data Mining and K-Ary Tree Hashing</a>
                     </h3>
                     <div class="publication-meta">
-                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Int. Journal of Intelligent Systems</span>
-                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2023</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i> Int. Journal of Intelligent Systems</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i> 2023</span>
                     </div>
                     <p class="publication-authors">A Yasin, SB ud din Tahir, J Frnda, R Fatima, J Ali Khan, MS Anwar</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>4 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i> 4 citations</div>
                     </div>
                     <a href="https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428" class="publication-link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-alt" aria-hidden="true"></i>
@@ -2067,12 +2023,12 @@
                         <a href="https://www.mdpi.com/1424-8220/20/22/6670" target="_blank" rel="noopener noreferrer">A Study of Accelerometer and Gyroscope Measurements in Physical Life-Log Activities Detection Systems</a>
                     </h3>
                     <div class="publication-meta">
-                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i>Sensors (MDPI)</span>
-                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i>2020</span>
+                        <span class="meta-item"><i class="fas fa-book" aria-hidden="true"></i> Sensors (MDPI)</span>
+                        <span class="meta-item"><i class="fas fa-calendar" aria-hidden="true"></i> 2020</span>
                     </div>
                     <p class="publication-authors">A Jalal, MAK Quaid, SB ud din Tahir, K Kim</p>
                     <div class="publication-metrics">
-                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i>99 citations</div>
+                        <div class="metric-badge"><i class="fas fa-quote-right" aria-hidden="true"></i> 99 citations</div>
                     </div>
                     <a href="https://www.mdpi.com/1424-8220/20/22/6670" class="publication-link" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-file-alt" aria-hidden="true"></i>
@@ -2084,7 +2040,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
+    <section id="contact">
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Get In Touch</h2>
@@ -2133,20 +2089,15 @@
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                     </a>
                 </div>
-                <div class="visitor-card fade-in">
-    <div class="visitor-header">
-        <i class="fas fa-globe"></i>
-        <span>Global Visitors</span>
-    </div>
-    <div class="flag-counter fade-in">
+               <div class="flag-counter fade-in">
     <h4 style="color: var(--color-accent-primary); text-align: center; margin-bottom: var(--space-4); font-family: var(--font-display);">
+        🌍 Global Visitors
     </h4>
     <a href="https://info.flagcounter.com/ZrS2" target="_blank" rel="noopener noreferrer">
-        <!-- Changed txt_818CF8 to txt_1e293b for dark gray text -->
-        <img src="https://s01.flagcounter.com/count2/ZrS2/bg_F5F3FF/txt_1e293b/border_C7D2FE/columns_4/maxflags_25/viewers_0/labels_1/pageviews_1/flags_1/percent_0/" 
+        <!-- Changed txt_818CF8 to txt_000000 for black text -->
+        <img src="https://s01.flagcounter.com/count2/ZrS2/bg_F5F3FF/txt_000000/border_C7D2FE/columns_4/maxflags_25/viewers_0/labels_1/pageviews_1/flags_1/percent_0/" 
              alt="Visitor counter" style="border-radius: 12px; display: block; margin: 0 auto;">
     </a>
-</div>
 </div>
             </div>
         </div>
@@ -2157,253 +2108,218 @@
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
+    <!-- ==========================================================================
+       JAVASCRIPT - SIMPLIFIED & ROBUST
+       ========================================================================== -->
     <script>
-        // ==========================================================================
-        // PORTFOLIO JAVASCRIPT - Modular & Organized
-        // ==========================================================================
-
-        // ==========================================================================
-        // 1. Constants & Configuration
-        // ==========================================================================
-        const SELECTORS = {
-            loader: '#loader',
-            progressBar: '#progressBar',
-            navbar: '#navbar',
-            navMenu: '#navMenu',
-            menuToggle: '#menuToggle',
-            menuOverlay: '#menuOverlay',
-            themeToggle: '#themeToggle',
-            scrollIndicator: '#scrollIndicator',
-            backToTop: '#backToTop',
-            fadeElements: '.fade-in',
-            sectionTitles: '.section-title'
-        };
-
-        const CLASSES = {
-            active: 'active',
-            visible: 'visible',
-            scrolled: 'scrolled',
-            floating: 'floating'
-        };
-
-        // ==========================================================================
-        // 2. Utility Functions
-        // ==========================================================================
-        const debounce = (func, wait) => {
-            let timeout;
-            return (...args) => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func(...args), wait);
-            };
-        };
-
-        const throttle = (func, limit) => {
-            let inThrottle;
-            return (...args) => {
-                if (!inThrottle) {
-                    func(...args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
+        // IMMEDIATE LOADER FIX - Hide loader as soon as DOM is ready
+        (function() {
+            // Function to hide loader - works even if everything else fails
+            function hideLoader() {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.classList.add('hidden');
                 }
-            };
-        };
-
-        // ==========================================================================
-        // 3. Loading & Progress Management
-        // ==========================================================================
-        const LoadingManager = {
-            init() {
-                window.addEventListener('load', () => {
-                    setTimeout(() => {
-                        document.querySelector(SELECTORS.loader).classList.add(CLASSES.hidden);
-                    }, 600);
-                });
-            },
-
-            updateProgress() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = (scrollTop / docHeight) * 100;
-                document.querySelector(SELECTORS.progressBar).style.width = scrollPercent + '%';
             }
-        };
 
-        // ==========================================================================
-        // 4. Navigation Manager
-        // ==========================================================================
-        const NavigationManager = {
-            init() {
-                this.bindEvents();
-                this.setupIntersectionObserver();
-            },
+            // Try to hide loader immediately
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hideLoader);
+            } else {
+                // DOM is already ready
+                hideLoader();
+            }
 
-            bindEvents() {
-                // Mobile menu toggle
-                document.querySelector(SELECTORS.menuToggle).addEventListener('click', () => this.toggleMenu());
-                document.querySelector(SELECTORS.menuOverlay).addEventListener('click', () => this.toggleMenu());
+            // Safety: Force hide after 2 seconds max (in case something breaks)
+            setTimeout(hideLoader, 2000);
+        })();
+
+        // MAIN APPLICATION CODE - Wrapped in try/catch to prevent failures
+        (function() {
+            'use strict';
+            
+            try {
+                // ==========================================================================
+                // HELPER FUNCTIONS
+                // ==========================================================================
+                const debounce = (func, wait) => {
+                    let timeout;
+                    return (...args) => {
+                        clearTimeout(timeout);
+                        timeout = setTimeout(() => func(...args), wait);
+                    };
+                };
+
+                const throttle = (func, limit) => {
+                    let inThrottle;
+                    return (...args) => {
+                        if (!inThrottle) {
+                            func(...args);
+                            inThrottle = true;
+                            setTimeout(() => inThrottle = false, limit);
+                        }
+                    };
+                };
+
+                // ==========================================================================
+                // DOM ELEMENTS
+                // ==========================================================================
+                const elements = {
+                    navbar: document.getElementById('navbar'),
+                    navMenu: document.getElementById('navMenu'),
+                    menuToggle: document.getElementById('menuToggle'),
+                    menuOverlay: document.getElementById('menuOverlay'),
+                    themeToggle: document.getElementById('themeToggle'),
+                    scrollIndicator: document.getElementById('scrollIndicator'),
+                    backToTop: document.getElementById('backToTop'),
+                    progressBar: document.getElementById('progressBar'),
+                    contactForm: document.querySelector('.contact-form')
+                };
+
+                // ==========================================================================
+                // INITIALIZATION
+                // ==========================================================================
                 
+                // Initialize theme
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                if (elements.themeToggle) {
+                    elements.themeToggle.querySelector('i').className = savedTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+
+                // ==========================================================================
+                // EVENT LISTENERS
+                // ==========================================================================
+
+                // Theme toggle
+                if (elements.themeToggle) {
+                    elements.themeToggle.addEventListener('click', () => {
+                        const currentTheme = document.documentElement.getAttribute('data-theme');
+                        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('theme', newTheme);
+                        elements.themeToggle.querySelector('i').className = newTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+                    });
+                }
+
+                // Mobile menu toggle
+                if (elements.menuToggle) {
+                    elements.menuToggle.addEventListener('click', () => {
+                        elements.navMenu.classList.toggle('active');
+                        elements.menuOverlay.classList.toggle('active');
+                        elements.menuToggle.classList.toggle('active');
+                        document.body.style.overflow = elements.navMenu.classList.contains('active') ? 'hidden' : 'auto';
+                    });
+                }
+
+                // Close mobile menu when clicking overlay
+                if (elements.menuOverlay) {
+                    elements.menuOverlay.addEventListener('click', () => {
+                        elements.navMenu.classList.remove('active');
+                        elements.menuOverlay.classList.remove('active');
+                        elements.menuToggle.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    });
+                }
+
                 // Smooth scrolling for nav links
                 document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
-                    link.addEventListener('click', (e) => this.handleNavLinkClick(e));
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(link.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            // Close mobile menu
+                            if (elements.navMenu) {
+                                elements.navMenu.classList.remove('active');
+                                elements.menuOverlay.classList.remove('active');
+                                elements.menuToggle.classList.remove('active');
+                                document.body.style.overflow = 'auto';
+                            }
+                        }
+                    });
                 });
 
-                // Scroll behavior
-                window.addEventListener('scroll', throttle(() => this.handleScroll(), 50));
-                
                 // Scroll indicator
-                document.querySelector(SELECTORS.scrollIndicator).addEventListener('click', () => {
-                    document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-                });
-            },
-
-            toggleMenu() {
-                const menu = document.querySelector(SELECTORS.navMenu);
-                const overlay = document.querySelector(SELECTORS.menuOverlay);
-                const hamburger = document.querySelector(SELECTORS.menuToggle);
-                
-                menu.classList.toggle(CLASSES.active);
-                overlay.classList.toggle(CLASSES.active);
-                hamburger.classList.toggle(CLASSES.active);
-                
-                const isOpen = menu.classList.contains(CLASSES.active);
-                document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-            },
-
-            handleNavLinkClick(e) {
-                e.preventDefault();
-                const target = document.querySelector(e.target.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // Close mobile menu if open
-                    document.querySelector(SELECTORS.navMenu).classList.remove(CLASSES.active);
-                    document.querySelector(SELECTORS.menuOverlay).classList.remove(CLASSES.active);
-                    document.querySelector(SELECTORS.menuToggle).classList.remove(CLASSES.active);
-                    document.body.style.overflow = 'auto';
-                }
-            },
-
-            handleScroll() {
-                const navbar = document.querySelector(SELECTORS.navbar);
-                if (window.scrollY > 50) {
-                    navbar.classList.add(CLASSES.scrolled);
-                } else {
-                    navbar.classList.remove(CLASSES.scrolled);
+                if (elements.scrollIndicator) {
+                    elements.scrollIndicator.addEventListener('click', () => {
+                        document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                    });
                 }
 
-                // Back to top visibility
-                const backToTop = document.querySelector(SELECTORS.backToTop);
-                if (window.scrollY > 300) {
-                    backToTop.classList.add(CLASSES.visible);
-                } else {
-                    backToTop.classList.remove(CLASSES.visible);
+                // Back to top button
+                if (elements.backToTop) {
+                    elements.backToTop.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
                 }
 
-                // Update progress
-                LoadingManager.updateProgress();
-            },
+                // Form submission
+                if (elements.contactForm) {
+                    elements.contactForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const formData = new FormData(elements.contactForm);
+                        const name = formData.get('name');
+                        const email = formData.get('email');
+                        const message = formData.get('message');
+                        const subject = `Collaboration Inquiry from ${name}`;
+                        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+                        window.location.href = `mailto:badar@protonmail.com?subject=${subject}&body=${body}`;
+                        setTimeout(() => elements.contactForm.reset(), 1000);
+                    });
+                }
 
-            setupIntersectionObserver() {
+                // Navbar scroll behavior
+                window.addEventListener('scroll', throttle(() => {
+                    if (elements.navbar) {
+                        if (window.scrollY > 50) {
+                            elements.navbar.classList.add('scrolled');
+                        } else {
+                            elements.navbar.classList.remove('scrolled');
+                        }
+                    }
+
+                    // Back to top visibility
+                    if (elements.backToTop) {
+                        if (window.scrollY > 300) {
+                            elements.backToTop.classList.add('visible');
+                        } else {
+                            elements.backToTop.classList.remove('visible');
+                        }
+                    }
+
+                    // Progress bar
+                    if (elements.progressBar) {
+                        const scrollTop = window.scrollY;
+                        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                        const scrollPercent = (scrollTop / docHeight) * 100;
+                        elements.progressBar.style.width = scrollPercent + '%';
+                    }
+                }, 50));
+
+                // Intersection Observer for animations
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add(CLASSES.visible);
+                            entry.target.classList.add('visible');
                         }
                     });
                 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-                // Observe all fade-in elements
-                document.querySelectorAll(SELECTORS.fadeElements).forEach(el => {
+                document.querySelectorAll('.fade-in').forEach(el => {
                     observer.observe(el);
                 });
-            }
-        };
 
-        // ==========================================================================
-        // 5. Theme Manager
-        // ==========================================================================
-        const ThemeManager = {
-            init() {
-                this.loadTheme();
-                document.querySelector(SELECTORS.themeToggle).addEventListener('click', () => this.toggleTheme());
-            },
+                // Floating animations
+                document.querySelectorAll('.project-card, .publication-card, .metric-card').forEach((el, index) => {
+                    if (index % 3 === 0) {
+                        el.classList.add('floating');
+                        el.style.animationDelay = `${index * 0.2}s`;
+                        el.style.animationDuration = `${4 + index * 0.5}s`;
+                    }
+                });
 
-            loadTheme() {
-                const savedTheme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                this.updateIcon(savedTheme);
-            },
-
-            toggleTheme() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                this.updateIcon(newTheme);
-            },
-
-            updateIcon(theme) {
-                const icon = document.querySelector(`${SELECTORS.themeToggle} i`);
-                icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }; 
-}
-
-
-
-            toggleTheme() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                this.updateIcon(newTheme);
-            },
-
-            updateIcon(theme) {
-                const icon = document.querySelector(`${SELECTORS.themeToggle} i`);
-                icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        };
-
-        // ==========================================================================
-        // 6. Form Manager
-        // ==========================================================================
-        const FormManager = {
-            init() {
-                document.querySelector('.contact-form').addEventListener('submit', (e) => this.handleSubmit(e));
-            },
-
-            handleSubmit(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(e.target);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const message = formData.get('message');
-                
-                const subject = `Collaboration Inquiry from ${name}`;
-                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-                
-                window.location.href = `mailto:badar@protonmail.com?subject=${subject}&body=${body}`;
-                
-                setTimeout(() => {
-                    e.target.reset();
-                }, 1000);
-            }
-        };
-
-        // ==========================================================================
-        // 7. Animation Manager
-        // ==========================================================================
-        const AnimationManager = {
-            init() {
-                this.setupFocusChartAnimation();
-                this.setupFloatingElements();
-                this.setupStaggerDelays();
-            },
-
-            setupFocusChartAnimation() {
+                // Focus chart animations
                 const focusObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -2422,98 +2338,17 @@
                 document.querySelectorAll('.focus-chart').forEach(chart => {
                     focusObserver.observe(chart);
                 });
-            },
 
-            setupFloatingElements() {
-                // Add floating animation to every 3rd card
-                document.querySelectorAll('.project-card, .publication-card, .metric-card').forEach((el, index) => {
-                    if (index % 3 === 0) {
-                        el.classList.add(CLASSES.floating);
-                        el.style.animationDelay = `${index * 0.2}s`;
-                        el.style.animationDuration = `${4 + index * 0.5}s`;
-                    }
-                });
-            },
+                // Copyright year
+                document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Sheikh Badar Ud Din Tahir. All rights reserved.`;
 
-            setupStaggerDelays() {
-                document.querySelectorAll('.skills-grid, .metrics-grid, .research-grid, .impact-grid, .projects-grid, .publications-grid').forEach(grid => {
-                    const children = grid.children;
-                    for (let i = 0; i < children.length; i++) {
-                        children[i].classList.add(`stagger-delay-${(i % 4) + 1}`);
-                    }
-                });
+            } catch (error) {
+                // If ANYTHING fails, still make sure loader is hidden
+                const loader = document.getElementById('loader');
+                if (loader) loader.classList.add('hidden');
+                console.error('Portfolio JavaScript Error:', error);
             }
-        };
-
-        // ==========================================================================
-        // 8. Dynamic Content Manager
-        // ==========================================================================
-        const DynamicContentManager = {
-            init() {
-                this.updateCopyrightYear();
-                this.setupBackToTop();
-            },
-
-            updateCopyrightYear() {
-                const currentYear = new Date().getFullYear();
-                document.querySelector('.copyright').textContent = `© ${currentYear} Sheikh Badar Ud Din Tahir. All rights reserved.`;
-            },
-
-            setupBackToTop() {
-                document.querySelector(SELECTORS.backToTop).addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-        };
-
-        // ==========================================================================
-        // 9. Application Initialization
-        // ==========================================================================
-        const PortfolioApp = {
-            init() {
-                console.log('🚀 Initializing Portfolio...');
-                
-                // Initialize all managers
-                LoadingManager.init();
-                NavigationManager.init();
-                ThemeManager.init();
-                FormManager.init();
-                AnimationManager.init();
-                DynamicContentManager.init();
-
-                // Add load event for remaining animations
-                window.addEventListener('load', () => {
-                    AnimationManager.setupStaggerDelays();
-                });
-
-                console.log('✅ Portfolio Initialized Successfully');
-            }
-        };
-        
-
-        // Initialize the application when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => PortfolioApp.init());
-        } else {
-            PortfolioApp.init();
-        }
+        })();
     </script>
-    <script>
-// FIX: Force hide loader after page loads
-document.addEventListener('DOMContentLoaded', function() {
-    const loader = document.getElementById('loader');
-    if (loader) {
-        setTimeout(() => loader.classList.add('hidden'), 300);
-    }
-});
-
-// SAFETY: Force hide after 2 seconds no matter what
-setTimeout(() => {
-    const loader = document.getElementById('loader');
-    if (loader && !loader.classList.contains('hidden')) {
-        loader.classList.add('hidden');
-    }
-}, 2000);
-</script>
 </body>
 </html>
