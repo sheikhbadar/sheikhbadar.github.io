@@ -2435,5 +2435,22 @@
             PortfolioApp.init();
         }
     </script>
+    <script>
+// FIX: Force hide loader after page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        setTimeout(() => loader.classList.add('hidden'), 300);
+    }
+});
+
+// SAFETY: Force hide after 2 seconds no matter what
+setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader && !loader.classList.contains('hidden')) {
+        loader.classList.add('hidden');
+    }
+}, 2000);
+</script>
 </body>
 </html>
