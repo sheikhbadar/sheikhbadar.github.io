@@ -1637,6 +1637,116 @@
             border-color: transparent;
             box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
         }
+        /* ================================================= */
+/* HEADER AESTHETIC BLOBS (SAFE, NON-INTRUSIVE) */
+/* ================================================= */
+
+header {
+    position: relative;
+    overflow: hidden;
+}
+
+header::before,
+header::after {
+    content: '';
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.85;
+    z-index: 0;
+    pointer-events: none;
+}
+
+header::before {
+    background: radial-gradient(
+        circle,
+        rgba(99, 102, 241, 0.35),
+        rgba(99, 102, 241, 0.15),
+        transparent 70%
+    );
+    top: -140px;
+    left: -180px;
+}
+
+header::after {
+    background: radial-gradient(
+        circle,
+        rgba(139, 92, 246, 0.35),
+        rgba(139, 92, 246, 0.15),
+        transparent 70%
+    );
+    bottom: -160px;
+    right: -160px;
+}
+
+/* Keep header text above blobs */
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ================================================= */
+/* GLASSY ACADEMIC CARD SYSTEM (PROJECTS / RESEARCH / PUBLICATIONS) */
+/* ================================================= */
+
+.project-card,
+.publication,
+.research-area {
+    position: relative;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.01)
+        ),
+        var(--card-bg);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Soft inner glass highlight */
+.project-card::before,
+.publication::before,
+.research-area::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.08),
+        transparent 40%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Ensure content layers above glass */
+.project-card > *,
+.publication > *,
+.research-area > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover – restrained academic lift */
+.project-card:hover,
+.publication:hover,
+.research-area:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    border-color: rgba(99, 102, 241, 0.45);
+}
+
     </style>
 </head>
 <body>
