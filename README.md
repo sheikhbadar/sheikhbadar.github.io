@@ -6,7 +6,7 @@ Static editorial design, published at https://sheikhbadar.github.io/ from the ro
 
 - `index.html`: biography, research, selected papers, talks, teaching and contact.
 - `publications.html`: all 12 papers, with optional keyword search.
-- `research.html` and `cv.html`: retained detailed pages and stable URLs.
+- `research.html`: detailed research descriptions. The CV page and navigation have been removed.
 - `assets/style.css`: shared desktop, mobile and print styles.
 - `assets/site.js`: footer year and publication search. All papers remain readable if JavaScript is unavailable.
 
@@ -22,4 +22,6 @@ Edit publications directly in the HTML; search uses the displayed text, so there
 
 ## Review
 
-Reviewed with the instructions in https://github.com/DietrichGebert/ponytail/tree/main/skills/ponytail-review . Fixed accent and apostrophe matching, filtered counts, accessible search announcements, progressive enhancement and narrow-screen overflow. The ORCID link is supported by the publisher record at https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428 . The CFE talk retains the established scheduled status; an invited designation was not independently verified.
+Reviewed with the instructions in https://github.com/DietrichGebert/ponytail/tree/main/skills/ponytail-review . Fixed accent and apostrophe matching, filtered counts, accessible search announcements, progressive enhancement and narrow-screen overflow. The ORCID link is supported by the publisher record at https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428 . The CFE talk retains its scheduled status.
+
+Contact: `sheikhbadarr@gmail.com`. The homepage uses a cropped, lightly stylized portrait derived from the supplied photo.
