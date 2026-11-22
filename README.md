@@ -1,21 +1,25 @@
-# Sheikh Badar Ud Din Tahir
+# Sheikh Badar Ud Din Tahir — academic website
 
-Personal academic website: https://sheikhbadar.github.io/
+Static editorial design, published at https://sheikhbadar.github.io/ from the root of `main`.
+
+## Files
+
+- `index.html`: biography, research, selected papers, talks, teaching and contact.
+- `publications.html`: all 12 papers, with optional keyword search.
+- `research.html` and `cv.html`: retained detailed pages and stable URLs.
+- `assets/style.css`: shared desktop, mobile and print styles.
+- `assets/site.js`: footer year and publication search. All papers remain readable if JavaScript is unavailable.
+
+No package installation or build step. Fonts load from Google Fonts with system fallbacks. The existing Flag Counter image retains ID `ZrS2`.
+
+## Checks
+
+Run `node tests/search.test.cjs` and `python tests/check_site.py`. For a local preview, run `python -m http.server 8765 --bind 127.0.0.1`.
 
 ## Editing
 
-- `index.html`: biography, recent work, presentations, and contact.
-- `research.html`: current research and earlier projects.
-- `publications.html`: the complete bibliography. Add or edit entries directly in the HTML; all papers are readable without JavaScript.
-- `cv.html`: education, appointments, teaching, presentations, and skills. The print link uses the browser's PDF facility.
-- `assets/style.css`: shared layout, mobile, and print styles.
+Edit publications directly in the HTML; search uses the displayed text, so there is no separate keyword list to maintain. Keep publication status, future talks and the March 2027 expected PhD completion date current.
 
-Plain HTML and CSS, with system fonts. No installation or build step. The only JavaScript is the CV print button.
+## Review
 
-## Publishing
-
-GitHub Pages deploys the root of `main`. Keep `.nojekyll` and the `assets` directory. Commit and push changes, then check the Pages deployment in Actions.
-
-For a local preview, run `python -m http.server 8765 --bind 127.0.0.1` in this directory.
-
-Keep publication details, manuscript status, and future presentation dates current. The current expected PhD completion date is March 2027. The existing Flag Counter statistics remain linked with ID `ZrS2`; the redesigned pages do not embed its tracking image.
+Reviewed with the instructions in https://github.com/DietrichGebert/ponytail/tree/main/skills/ponytail-review . Fixed accent and apostrophe matching, filtered counts, accessible search announcements, progressive enhancement and narrow-screen overflow. The ORCID link is supported by the publisher record at https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428 . The CFE talk retains the established scheduled status; an invited designation was not independently verified.
