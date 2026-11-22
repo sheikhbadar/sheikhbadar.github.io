@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script defer src="assets/site.js?v=3"></script>
 </head>
 <body>
@@ -24,12 +24,12 @@
 <main class="wrap detail-page" id="main"><div class="page-heading"><h1>Research</h1></div>
 <section class="section" id="football">
 <h2 class="section-label">Football</h2>
-<div class="section-body"><article id="bayesian-football"><h2>Bayesian football forecasting</h2><p>Do recent performances add useful information to team ratings? I study hierarchical models for football goal counts that combine Elo ratings with match-level covariates. I compare their predictions with simpler models using chronological evaluation and proper scoring rules.</p><p>With Roberto Macrì-Demartino, Leonardo Egidi, and Nicola Torelli.</p><p><a href="publications.html#under-review">Manuscript under review</a></p></article>
-<article id="expected-goals"><h2>Expected goals and season simulation</h2><p>I model shot conversion probabilities from event data and use estimated scoring strengths to simulate matches and league tables. Recent work revisits Leicester City’s 2015/16 season through expected goals, examining how uncertainty in match outcomes affects the standings.</p><p><a href="https://arxiv.org/abs/2602.15673">Leicester’s Tale — preprint</a><br><a href="https://doi.org/10.1007/978-3-031-96736-8_68">xG modelling — SIS 2025 proceedings</a></p></article></div>
+<div class="section-body"><article id="bayesian-football"><h2>Bayesian football forecasting</h2><p>Do recent performances add useful information to team ratings? I study hierarchical models for football goal counts that combine Elo ratings with match-level covariates. I compare their predictions with simpler models using chronological evaluation and proper scoring rules.</p><p>The <a href="https://www.cmstatistics.org/RegistrationsV2/CFECMStatistics2026/viewSubmission.php?in=2050&amp;token=18n738rpp8s90pq9s1nsprq687p2923p">CFE–CMStatistics abstract</a> reports lower Brier and ranked probability scores than a standard attack–defence model in English Premier League evaluations. The <a href="publications.html#under-review">five-league working paper</a> asks whether recent performance improves forecasts beyond Elo.</p></article>
+<article id="expected-goals"><h2>Expected goals and season simulation</h2><p>I model shot conversion probabilities from event data and use estimated scoring strengths to simulate matches and league tables. In our 2015/16 case study, Leicester ranked highly by midseason xG. Simulating the remaining fixtures showed how a title was possible even though it was unlikely.</p><p><a href="https://arxiv.org/abs/2602.15673">Leicester’s Tale — preprint</a><br><a href="https://doi.org/10.1007/978-3-031-96736-8_68">xG modelling — SIS 2025 proceedings</a></p></article></div>
 </section>
 <section class="section" id="cricket-research">
 <h2 class="section-label">Cricket</h2>
-<div class="section-body"><article id="cricket"><h2>Win probabilities during a run chase</h2><p>I am developing ball-level models for runs, wickets, and delivery outcomes. Monte Carlo simulation of the remaining innings gives an estimate of the probability of a successful chase after each delivery.</p><p class="muted">Work in progress.</p></article></div>
+<div class="section-body"><article id="cricket"><h2>Win probabilities during a run chase</h2><p>I am developing ball-level models for runs, wickets, and delivery outcomes. After each delivery, I use the updated runs needed, balls remaining and wickets in hand to simulate the rest of the innings and estimate the probability of a successful chase.</p><p class="muted">Work in progress.</p></article></div>
 </section>
 <section class="section" id="earlier-work">
 <h2 class="section-label">Earlier work</h2>
@@ -43,10 +43,8 @@
 </main>
 <footer class="footer" id="contact">
  <div class="wrap footer-body">
- <div class="footer-text"><p class="eyebrow">Contact</p><h2>Get in touch.</h2><p>For questions about research, potential collaborations, or academic opportunities:</p><a class="email" href="mailto:sheikhbadarr@gmail.com">sheikhbadarr@gmail.com</a>
- <div class="footer-links"><a href="https://scholar.google.com/citations?hl=en&user=f0XUQu8AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://github.com/sheikhbadar" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://orcid.org/0000-0003-2459-1610" target="_blank" rel="noopener noreferrer">ORCID <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/sheikhbadaruddintahir/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div>
- </div>
- <div class="foot-bottom"><span>© <span id="year">2026</span> Sheikh Badar Ud Din Tahir · University of Trieste</span><div class="counter-wrap"><span class="counter-label">Visitors</span><a href="https://info.flagcounter.com/ZrS2" target="_blank" rel="noopener noreferrer" title="Global website visits"><img loading="lazy" src="https://s01.flagcounter.com/count2/ZrS2/bg_F5F3FF/txt_000000/border_C7D2FE/columns_4/maxflags_25/viewers_0/labels_1/pageviews_1/flags_1/percent_0/" alt="Flag Counter visitor statistics" width="280" height="70"></a></div></div>
+ <a class="email" href="mailto:sheikhbadarr@gmail.com">sheikhbadarr@gmail.com</a>
+ <div class="foot-bottom"><span>© <span id="year">2026</span> Sheikh Badar Ud Din Tahir · University of Trieste</span><div class="counter-wrap"><a href="https://info.flagcounter.com/ZrS2" target="_blank" rel="noopener noreferrer" title="Global website visits"><img loading="lazy" src="https://s01.flagcounter.com/count2/ZrS2/bg_F5F3FF/txt_000000/border_C7D2FE/columns_4/maxflags_25/viewers_0/labels_1/pageviews_1/flags_1/percent_0/" alt="Flag Counter visitor statistics" width="280" height="70"></a></div></div>
  </div>
  </footer>
 </body></html>
