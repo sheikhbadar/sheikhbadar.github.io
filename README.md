@@ -18,10 +18,7 @@ Run `node tests/search.test.cjs` and `python tests/check_site.py`. For a local p
 
 ## Editing
 
-Edit publications directly in the HTML; search uses the displayed text, so there is no separate keyword list to maintain. Keep publication status, future talks and the March 2027 expected PhD completion date current.
+Edit publications directly in the HTML; search uses the displayed text.
 
 ## Review
-
-Reviewed with the instructions in https://github.com/DietrichGebert/ponytail/tree/main/skills/ponytail-review . Fixed accent and apostrophe matching, filtered counts, accessible search announcements, progressive enhancement and narrow-screen overflow. The ORCID link is supported by the publisher record at https://onlinelibrary.wiley.com/doi/10.1155/2023/9822428 . The CFE talk retains its scheduled status.
-
-Contact: `sheikhbadarr@gmail.com`. The homepage uses a cropped, lightly stylized portrait derived from the supplied photo.
+ Fixed accent and apostrophe matching, filtered counts, accessible search announcements, progressive enhancement and narrow-screen overflow.
